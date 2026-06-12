@@ -1,0 +1,1434 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="preload" as="image" href="favicon1.png">
+  <link rel="icon" type="image/jpeg" href="favicon1.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gossip Girl · Inicio</title>
+  <link rel="preload" as="image" href="ny.jpeg">
+  <link rel="preload" as="image" href="logo2.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=optional" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background-color: #0d0d0d;
+      color: #1a1a1a;
+      max-width: 960px;
+      margin: 0 auto;
+      border: 2px solid #c9b99a;
+      position: relative;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 28px;
+      border-bottom: 2px solid #c9b99a;
+      background-color: #101010;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    nav .logo-img {
+      height: 60px;
+      width: 200px;
+      display: block;
+      object-fit: contain;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      font-family: 'EB Garamond', serif;
+      font-size: 16px;
+      letter-spacing: 1px;
+      color: #ffffff;
+      transition: color 0.2s ease, text-shadow 0.2s ease;
+    }
+
+    nav ul li a:hover {
+      color: #8b1a2f;
+    }
+
+    nav ul li a.activo {
+      color: #c9b99a;
+      text-shadow: 0 0 8px rgba(201, 185, 154, 0.8), 0 0 3px rgba(201, 185, 154, 0.9);
+    }
+
+    .encabezado-principal {
+      text-align: center;
+      padding: 60px 20px 50px;
+      background-image: url('ny.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #e8e0d5;
+      border-bottom: 2px solid #c9b99a;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .encabezado-principal::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .encabezado-principal h1,
+    .encabezado-principal p {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+      transition: text-shadow 0.2s ease;
+    }
+
+    .encabezado-principal h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 65px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      text-shadow: 0 0 15px rgba(255, 255, 200, 0.5), 2px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .encabezado-principal p {
+      margin-top: 14px;
+      font-style: italic;
+      font-size: 18px;
+      letter-spacing: 0.5px;
+      color: #e8e0d5;
+      text-shadow: 0 0 12px rgba(235, 224, 213, 0.7), 0 0 5px rgba(232, 224, 213, 0.8), 1px 1px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .seccion-intro {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 0;
+      padding: 36px 28px;
+      border-bottom: 2px solid #c9b99a;
+      background-color: #faf8f5;
+    }
+
+    .seccion-intro .divisor {
+      background-color: #c9b99a;
+    }
+
+    .col-intro {
+      padding-right: 32px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .col-info {
+      padding-left: 32px;
+    }
+
+    .etiqueta-seccion {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .etiqueta-seccion::before,
+    .etiqueta-seccion::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: #8b1a2f;
+    }
+
+    .etiqueta-seccion span {
+      font-family: 'Playfair Display', serif;
+      font-size: 13.6px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      white-space: nowrap;
+    }
+
+    .col-intro p {
+      font-size: 16px;
+      line-height: 28.8px;
+      color: #444;
+      text-align: justify;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      max-width: 80%;
+      margin: 0 auto;
+    }
+
+    .col-info-interna {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 0;
+    }
+
+    .col-info-interna .divisor-bloque {
+      background-color: #c9b99a;
+      margin: 0 16px;
+    }
+
+    .info-datos ul {
+      list-style: none;
+      font-size: 16px;
+      line-height: 32px;
+      color: #444;
+    }
+
+    .info-datos ul li span {
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .info-extra {
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .info-creadores ul {
+      list-style: none;
+      font-size: 16px;
+      line-height: 30.4px;
+      color: #444;
+    }
+
+    .info-creadores ul li span {
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .info-creadores a {
+      color: #8b1a2f;
+      text-decoration: none;
+    }
+
+    .info-creadores a:hover {
+      text-decoration: underline;
+    }
+
+    .info-donde-ver {
+      border-top: 1px solid #c9b99a;
+      padding-top: 14px;
+      width: 67%;
+    }
+
+    .mini-etiqueta {
+      font-family: 'Playfair Display', serif;
+      font-size: 12.8px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .plataformas-fila {
+      display: flex;
+      gap: 20px;
+      flex-wrap: nowrap;
+      align-items: center;
+    }
+
+    .icono-plataforma {
+      display: inline-block;
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      border-radius: 50%;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid #c9b99a;
+      flex-shrink: 0;
+    }
+
+    .icono-plataforma img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .bloque-medio {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      border-bottom: 2px solid #c9b99a;
+      background-color: #faf8f5;
+    }
+
+    .personajes {
+      padding: 28px;
+      border-right: 2px solid #c9b99a;
+      min-width: 0;
+    }
+
+    .personajes h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 15.2px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 16px;
+      color: #1a1a1a;
+    }
+
+    .carrusel-contenedor {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .carrusel {
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .cuadricula-personajes {
+      display: flex;
+      gap: 0;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .tarjeta-personaje {
+      flex: 0 0 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .carrusel-boton {
+      border: 1.5px solid #c9b99a;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      color: #1a1a1a;
+      background-color: #faf8f5;
+    }
+
+    .carrusel-boton:hover {
+      background-color: #c9b99a;
+      transform: scale(1.05);
+    }
+
+    .carrusel-boton:active {
+      transform: scale(0.95);
+    }
+
+    .contenedor-foto {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      max-width: 180px;
+      margin: 0 auto 8px;
+      background-color: #ddd;
+      border: 1.5px solid #c9b99a;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+
+    .contenedor-foto img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .tarjeta-personaje h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      margin-bottom: 4px;
+      color: #1a1a1a;
+    }
+
+    .tarjeta-personaje p {
+      font-size: 13.12px;
+      color: #444;
+      font-style: italic;
+    }
+
+    .carrusel-puntos {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .punto {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #ccc;
+      transition: all 0.3s ease;
+    }
+
+    .punto:hover {
+      background-color: #999;
+    }
+
+    .punto.active {
+      background-color: #1a1a1a;
+      width: 20px;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 768px) {
+      .tarjeta-personaje {
+        flex: 0 0 100%;
+      }
+
+      .carrusel-boton {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+      }
+    }
+
+    .momentos-panel {
+      background-color: #f0ece5;
+      padding: 23px;
+      min-width: 0;
+    }
+
+    .momentos-panel .etiqueta-seccion span {
+      font-size: 12.8px;
+    }
+
+    .momento-destacado {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .momento-destacado h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 19.2px;
+      margin-bottom: 4px;
+      color: #1a1a1a;
+    }
+
+    .momento-destacado p {
+      font-size: 14.08px;
+      color: #444;
+      font-style: italic;
+      min-height: 2.8em;
+    }
+
+    .foto-momento {
+      width: 70%;
+      aspect-ratio: 16 / 9;
+      max-width: 100%;
+      margin: 0 auto 5px auto;
+      background-color: #ddd;
+      border: 1.5px solid #c9b99a;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+
+    .foto-momento img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .miniaturas {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .miniatura {
+      flex: 1;
+      background-color: #d5cfc6;
+      border: 1.5px solid #c9b99a;
+      padding: 10px 4px;
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+      border-radius: 2px;
+    }
+
+    .bloque-inferior {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      border-bottom: 2px solid #c9b99a;
+      background-color: #faf8f5;
+    }
+
+    .col-derecha {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .estilo h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 15.2px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 16px;
+      color: #1a1a1a;
+    }
+
+    .cuadricula-estilo {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .elemento-estilo {
+      flex: 1;
+      text-align: center;
+      min-width: 0;
+      max-width: 33%;
+    }
+
+    .elemento-estilo p {
+      font-size: 12px;
+      color: #444;
+      font-style: italic;
+      text-align: center;
+      line-height: 22.4px;
+      margin-top: 4px;
+    }
+
+    .elemento-estilo span {
+      font-size: 11.2px;
+      color: #8b1a2f;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: block;
+      text-align: center;
+      margin-top: 2px;
+    }
+
+    .imagen-estilo {
+      width: 100%;
+      aspect-ratio: 2 / 4;
+      background-color: #ddd;
+      border: 1.5px solid #c9b99a;
+      margin-bottom: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .imagen-estilo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    footer {
+      background-color: #101010;
+      border-top: 2px solid #c9b99a;
+      padding: 40px 28px 24px;
+      color: #aaa;
+      font-family: 'EB Garamond', Georgia, serif;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 83px 1fr 1px 1fr;
+      gap: 0;
+      margin-bottom: 32px;
+    }
+
+    .footer-divisor {
+      background-color: #c9b99a;
+      margin: 0 50px;
+    }
+
+    .footer-col-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #c9b99a;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .footer-col p {
+      font-size: 14px;
+      line-height: 26px;
+      color: #888;
+      font-style: italic;
+    }
+
+    .footer-col a[href="mapadesitio.html"] {
+      transition: color 0.2s ease, letter-spacing 0.2s ease;
+    }
+
+    .footer-col a[href="mapadesitio.html"]:hover {
+      color: #8b1a2f !important;
+      letter-spacing: 1.5px;
+    }
+
+    .footer-col-contacto p {
+      font-size: 14px;
+      line-height: 28px;
+      color: #888;
+    }
+
+    .footer-col-contacto a {
+      color: #c9b99a;
+      text-decoration: none;
+    }
+
+    .footer-col-contacto a:hover {
+      color: #8b1a2f;
+    }
+
+    .footer-redes {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-redes a {
+      font-size: 14px;
+      color: #888;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-redes a:hover {
+      color: #c9b99a;
+    }
+
+    .footer-redes .red-icono-img {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #2a2a2a;
+      padding-top: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .footer-bottom p {
+      font-size: 12px;
+      color: #E0E0E0;
+      letter-spacing: 0.5px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(28px);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #tip-panel {
+      position: fixed;
+      bottom: -340px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(860px, 96vw);
+      background-color: #0d0d0d;
+      border: 1.5px solid #c9b99a;
+      border-bottom: none;
+      padding: 28px 32px 24px;
+      z-index: 9998;
+      box-shadow: 0 -8px 40px rgba(0,0,0,0.7);
+      transition: bottom 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    #tip-panel.visible {
+      bottom: 0;
+    }
+
+    #tip-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    #tip-panel-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: #c9b99a;
+      letter-spacing: 1px;
+    }
+
+    #tip-panel-subtitulo {
+      font-family: 'EB Garamond', serif;
+      font-size: 13.5px;
+      color: #fff;
+      font-style: italic;
+      margin-top: 3px;
+    }
+
+    #tip-panel-cerrar {
+      background: none;
+      border: 1px solid #3a3a3a;
+      color: #fff;
+      font-family: 'EB Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+
+    #tip-panel-cerrar:hover {
+      border-color: #c9b99a;
+      color: #c9b99a;
+    }
+
+    #tip-textarea {
+      width: 100%;
+      height: 90px;
+      background-color: #141414;
+      border: 1px solid #2a2a2a;
+      color: #e8e0d5;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 15.5px;
+      line-height: 26px;
+      padding: 12px 14px;
+      resize: none;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    #tip-textarea::placeholder {
+      color: #444;
+      font-style: italic;
+    }
+
+    #tip-textarea:focus {
+      border-color: #c9b99a;
+    }
+
+    #tip-panel-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    #tip-aviso {
+      font-family: 'EB Garamond', serif;
+      font-size: 12.5px;
+      color: #fff;
+      font-style: italic;
+    }
+
+    #tip-enviar {
+      background: none;
+      border: 1px solid #c9b99a;
+      color: #c9b99a;
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    #tip-enviar:hover {
+      background-color: #c9b99a;
+      color: #0d0d0d;
+    }
+
+    #tip-confirmacion {
+      display: none;
+      text-align: center;
+      padding: 10px 0 4px;
+    }
+
+    #tip-confirmacion p:first-child {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: #c9b99a;
+      margin-bottom: 8px;
+    }
+
+    #tip-confirmacion p:last-child {
+      font-family: 'EB Garamond', serif;
+      font-size: 15px;
+      color: #666;
+      font-style: italic;
+    }
+
+    #gg-blast {
+      position: fixed;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(860px, 96vw);
+      background-color: #0d0d0d;
+      border: 1.5px solid #c9b99a;
+      border-top: none;
+      padding: 18px 28px 16px;
+      z-index: 9999;
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.7);
+      transition: top 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    #gg-blast.visible {
+      top: 0;
+    }
+
+    #gg-blast-logo {
+      height: 38px;
+      width: 120px;
+      object-fit: contain;
+      flex-shrink: 0;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    #gg-blast-cuerpo {
+      flex: 1;
+    }
+
+    #gg-blast-etiqueta {
+      font-family: 'Playfair Display', serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #c9b99a;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    #gg-blast-texto {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 16px;
+      color: #e8e0d5;
+      line-height: 26px;
+      min-height: 26px;
+    }
+
+    #gg-blast-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 15px;
+      background-color: #c9b99a;
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: parpadeo 0.8s step-end infinite;
+    }
+
+    @keyframes parpadeo {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    #gg-blast-cerrar {
+      background: none;
+      border: 1px solid #3a3a3a;
+      color: #666;
+      font-family: 'EB Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    #gg-blast-cerrar:hover {
+      border-color: #c9b99a;
+      color: #c9b99a;
+    }
+  </style>
+</head>
+<body>
+
+<div id="gg-blast" role="alert" aria-live="polite">
+  <img id="gg-blast-logo" src="logo2.png" alt="Gossip Girl">
+  <div id="gg-blast-cuerpo">
+    <span id="gg-blast-etiqueta">Gossip Girl · Exclusiva</span>
+    <div id="gg-blast-texto"><span id="gg-blast-cursor"></span></div>
+  </div>
+  <button id="gg-blast-cerrar" onclick="cerrarBlast()">✕ cerrar</button>
+</div>
+
+<div id="tip-panel">
+  <div id="tip-panel-header">
+    <div>
+      <div id="tip-panel-titulo">Envía un tip anónimo</div>
+      <div id="tip-panel-subtitulo">Gossip Girl está escuchando. Siempre.</div>
+    </div>
+    <button id="tip-panel-cerrar" onclick="cerrarTip()">✕ cerrar</button>
+  </div>
+  <div id="tip-formulario">
+    <textarea id="tip-textarea" placeholder="¿Qué sabes tú que el Upper East Side no debería saber...?"></textarea>
+    <div id="tip-panel-footer">
+      <span id="tip-aviso">﹗Tu identidad nunca será revelada. O casi nunca.</span>
+      <button id="tip-enviar" onclick="enviarTip()">Enviar ➤</button>
+    </div>
+  </div>
+  <div id="tip-confirmacion">
+    <p>Recibido. XOXO.</p>
+    <p>Tu secreto está en buenas manos. Gossip Girl sabrá qué hacer con él.</p>
+  </div>
+</div>
+
+<nav>
+  <div class="logo">
+    <a href="gossipgirl.html">
+      <img class="logo-img" src="logo2.png" alt="Gossip Girl Logo">
+    </a>
+  </div>
+  <ul>
+    <li><a href="gossipgirl.html" class="activo">Inicio</a></li>
+    <li><a href="personajes.html">Personajes</a></li>
+    <li><a href="quiz.html">Quiz</a></li>
+    <li><a href="wiki.html">Wiki</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+  </ul>
+</nav>
+
+<section class="encabezado-principal">
+  <h1>GOSSIP GIRL</h1>
+  <p>"And who am I? That's a secret…"</p>
+</section>
+
+<section class="seccion-intro" id="intro">
+  <div class="col-intro">
+    <div class="etiqueta-seccion"><span>Introducción</span></div>
+    <p>
+      Gossip Girl es una serie de drama adolescente ambientada en el Upper East Side de Manhattan,
+      Nueva York. Sigue las vidas de un grupo de jóvenes adinerados cuyas acciones son narradas
+      por una misteriosa bloguera conocida como "Gossip Girl".
+    </p>
+  </div>
+
+  <div class="divisor"></div>
+
+  <div class="col-info">
+    <div class="etiqueta-seccion"><span>Información Rápida</span></div>
+
+    <div class="col-info-interna">
+
+      <div class="info-datos">
+        <ul>
+          <li><span>Estreno:</span> 2007</li>
+          <li><span>Temporadas:</span> 6</li>
+          <li><span>Episodios:</span> 121</li>
+          <li><span>Género:</span> Drama</li>
+        </ul>
+
+        <div class="info-donde-ver">
+          <span class="mini-etiqueta">⤹ Disponible en:</span>
+          <div class="plataformas-fila">
+            <a href="https://www.netflix.com/mx-en/title/70143811" target="_blank" rel="noopener noreferrer" class="icono-plataforma" title="Ver en Netflix">
+              <img src="iconos/netflix.jpeg" alt="Netflix">
+            </a>
+            <a href="https://www.hbomax.com/mx/es/shows/gossip-girl-2007/60674de2-ce43-44be-8542-f61957a2c515" target="_blank" rel="noopener noreferrer" class="icono-plataforma" title="Ver en Max">
+              <img src="iconos/max.jpeg" alt="Max">
+            </a>
+            <a href="https://www.primevideo.com/dp/amzn1.dv.gti.1ea9f67a-1c04-b795-b2ea-a7633ded094b" target="_blank" rel="noopener noreferrer" class="icono-plataforma" title="Ver en Prime Video">
+              <img src="iconos/prime.jpg" alt="Prime Video">
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="divisor-bloque"></div>
+
+      <div class="info-extra">
+        <div class="info-creadores">
+          <ul>
+            <li>
+              <span>Creadores:</span><br>
+              <a href="https://es.wikipedia.org/wiki/Josh_Schwartz" target="_blank" rel="noopener noreferrer">Josh Schwartz</a><br>
+              <a href="https://es.wikipedia.org/wiki/Stephanie_Savage" target="_blank" rel="noopener noreferrer">Stephanie Savage</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="bloque-medio" id="personajes">
+  <div class="personajes">
+    <h2>Personajes Destacados</h2>
+
+    <div class="carrusel-contenedor">
+      <button class="carrusel-boton boton-anterior" aria-label="Anterior">❮</button>
+
+      <div class="carrusel">
+        <div class="cuadricula-personajes" id="carouselGrid">
+
+          <div class="tarjeta-personaje">
+            <div class="contenedor-foto">
+              <a href="serena.html"><img src="personajes/inicio/serena.jpeg" alt="Serena van der Woodsen" loading="lazy"></a>
+            </div>
+            <h3>Serena van der Woodsen</h3>
+            <p>It girl, espontánea y carismática.</p>
+          </div>
+
+          <div class="tarjeta-personaje">
+            <div class="contenedor-foto">
+              <a href="blair.html"><img src="personajes/inicio/blair.jpeg" alt="Blair Waldorf" loading="lazy"></a>
+            </div>
+            <h3>Blair Waldorf</h3>
+            <p>Reina B, ambiciosa y elegante.</p>
+          </div>
+
+          <div class="tarjeta-personaje">
+            <div class="contenedor-foto">
+              <a href="chuck.html"><img src="personajes/inicio/chuck.jpeg" alt="Chuck Bass" loading="lazy"></a>
+            </div>
+            <h3>Chuck Bass</h3>
+            <p>Excéntrico, astuto y poderoso.</p>
+          </div>
+
+          <div class="tarjeta-personaje">
+            <div class="contenedor-foto">
+              <a href="nate.html"><img src="personajes/inicio/nate.jpeg" alt="Nate Archibald" loading="lazy"></a>
+            </div>
+            <h3>Nate Archibald</h3>
+            <p>Escritor, observador e idealista.</p>
+          </div>
+
+          <div class="tarjeta-personaje">
+            <div class="contenedor-foto">
+              <a href="georgina.html"><img src="personajes/inicio/georgina.jpeg" alt="Georgina Sparks" loading="lazy"></a>
+            </div>
+            <h3>Georgina Sparks</h3>
+            <p>Diseñadora, rebelde y creativa.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <button class="carrusel-boton boton-siguiente" aria-label="Siguiente">❯</button>
+    </div>
+
+    <div class="carrusel-puntos">
+      <span class="punto active"></span>
+      <span class="punto"></span>
+      <span class="punto"></span>
+      <span class="punto"></span>
+      <span class="punto"></span>
+    </div>
+  </div>
+
+  <div class="momentos-panel">
+    <div class="etiqueta-seccion"><span>Momentos Icónicos</span></div>
+    <div class="momento-destacado">
+      <div class="foto-momento">
+        <img src="es1.jpeg" alt="Momento icónico" loading="lazy">
+      </div>
+      <h3>Chuck le consigue la corona a Blair</h3>
+      <p>Chuck arregla los votos de la coronación del Constance para hacer que gane Blair</p>
+    </div>
+  </div>
+</section>
+
+<section class="bloque-inferior" id="momentos">
+  <div class="momentos-panel">
+    <div class="etiqueta-seccion"><span>Momentos Icónicos</span></div>
+    <div class="momento-destacado">
+      <div class="foto-momento">
+        <img src="es2.jpeg" alt="Momento icónico" loading="lazy">
+      </div>
+      <h3>Serena regresa</h3>
+      <p>Serena regresa a NY después de años de haberse ido sin explicaciones</p>
+    </div>
+  </div>
+
+  <div class="col-derecha">
+    <div class="estilo" id="outfits">
+      <h2>El Estilo del Upper East Side</h2>
+      <div class="cuadricula-estilo">
+
+        <div class="elemento-estilo">
+          <div class="imagen-estilo">
+            <img src="blfsb.jpeg" alt="Outfit Blair" loading="lazy">
+          </div>
+          <span>T1 · E07</span>
+          <p>La fiesta de los Archibald</p>
+        </div>
+
+        <div class="elemento-estilo">
+          <div class="imagen-estilo">
+            <img src="srvst.jpeg" alt="Outfit Serena" loading="lazy">
+          </div>
+          <span>T1 · E07</span>
+          <p>La fiesta de los Archibald</p>
+        </div>
+
+        <div class="elemento-estilo">
+          <div class="imagen-estilo">
+            <img src="blinv.jpeg" alt="Outfit Blair" loading="lazy">
+          </div>
+          <span>T1 · E07</span>
+          <p>La fiesta de los Archibald</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <span class="footer-col-titulo">Ⓘ Sobre este sitio</span>
+      <p>Este es un fan site dedicado al Upper East Side. El contenido fue creado por y para fans de la serie original.</p>
+      <a href="mapadesitio.html" style="display:inline-block; margin-top:10px; font-family:'EB Garamond',serif; font-size:14px; color:#c9b99a; text-decoration:none; letter-spacing:0.5px;">🢒 Mapa de sitio 🢐</a>
+    </div>
+    <div class="footer-divisor"></div>
+    <div class="footer-col footer-col-contacto">
+      <span class="footer-col-titulo">☏ Contacto</span>
+      <p>¿Tienes algo que contarnos?<br>Escríbenos.</p>
+      <p style="margin-top:10px;"><a href="mailto:xoxo@gossipgirl-fan.com">✉ xoxo@gossipgirl-fan.com</a></p>
+      <button onclick="abrirTip()" onmouseover="this.style.color='#8b1a2f'" onmouseout="this.style.color='#c9b99a'" style="background:none; border:none; cursor:pointer; font-family:'EB Garamond',serif; font-size:14px; color:#c9b99a; text-decoration:none; padding:0; letter-spacing:0.5px;">
+        ✎ Envíanos un tip anónimo
+      </button>
+    </div>
+    <div class="footer-divisor"></div>
+    <div class="footer-col">
+      <span class="footer-col-titulo">⍟ Síguenos</span>
+      <div class="footer-redes">
+        <a href="https://x.com/gossip_girlfan3" target="_blank" rel="noopener noreferrer">
+          <img class="red-icono-img" src="iconos/x.jpg" alt="X Twitter" loading="lazy">
+          <span>X (Twitter): @gossip_girlfan3</span>
+        </a>
+        <a href="https://www.instagram.com/uppereastsidefan" target="_blank" rel="noopener noreferrer">
+          <img class="red-icono-img" src="iconos/insta.jpg" alt="Instagram" loading="lazy">
+          <span>Instagram: @UpperEastSideFan</span>
+        </a>
+        <a href="https://www.tiktok.com/@gossip.girlfp" target="_blank" rel="noopener noreferrer">
+          <img class="red-icono-img" src="iconos/tt.png" alt="TikTok" loading="lazy">
+          <span>TikTok: @gossip_girlfp</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Gossip Girl · Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  const carouselGrid = document.getElementById('carouselGrid');
+  const prevBtn = document.querySelector('.boton-anterior');
+  const nextBtn = document.querySelector('.boton-siguiente');
+  const dots = document.querySelectorAll('.punto');
+
+  let currentIndex = 0;
+  const totalSlides = document.querySelectorAll('.tarjeta-personaje').length;
+
+  function updateCarousel() {
+    const translateX = -(currentIndex * 100);
+    carouselGrid.style.transform = `translateX(${translateX}%)`;
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+    prevBtn.style.opacity = '1';
+    prevBtn.style.cursor = 'pointer';
+    nextBtn.style.opacity = '1';
+    nextBtn.style.cursor = 'pointer';
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateCarousel();
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateCarousel();
+  }
+
+  prevBtn.addEventListener('click', prevSlide);
+  nextBtn.addEventListener('click', nextSlide);
+  dots.forEach((dot, i) => dot.addEventListener('click', () => { currentIndex = i; updateCarousel(); }));
+  updateCarousel();
+
+  const momentos = [
+    { img: 'escenas/es1.jpeg',  titulo: 'Chuck le consigue la corona a Blair',    desc: 'Chuck arregla los votos de la coronación del Constance para hacer que gane Blair' },
+    { img: 'escenas/es2.jpeg',  titulo: 'Serena regresa',                          desc: 'Serena regresa a NY después de años de haberse ido sin explicaciones' },
+    { img: 'escenas/es3.jpeg',  titulo: 'Blair se deshace de Georgina',             desc: 'Blair hace que Georgina se vaya a un reformatorio después de hacer un caos' },
+    { img: 'escenas/es4.jpeg',  titulo: 'Blair en Paris',                           desc: 'Después de varios momentos estresantes, Blair se toma un tiempo para ella' },
+    { img: 'escenas/es5.jpeg',  titulo: 'La reconciliación de 𝓢 y 𝓑',               desc: 'Serena y Blair hacen las pases después de un largo tiempo de rivalidad' },
+    { img: 'escenas/es10.jpeg', titulo: 'La graduación del Constance',              desc: 'La preparatoria termina para Blair y Serena' },
+    { img: 'escenas/es8.jpeg',  titulo: 'La coronación de Blair',                   desc: 'Blair cumple su sueño de ser la reina del Constance' },
+    { img: 'escenas/es7.jpeg',  titulo: 'Blair escapa de su boda',                  desc: 'Blair rechaza casarse con el príncipe a último momento, después de que Gossip Girl revelara un video de ella con Chuck' },
+    { img: 'escenas/es6.jpeg',  titulo: 'El reencuentro de Blair y Chuck',          desc: 'Blair y Chuck se reencuentran en París después de estar separados mucho tiempo' }
+  ];
+
+  const panelesMomentos = document.querySelectorAll('.momentos-panel .momento-destacado');
+
+  const indicesPaneles = Array.from(panelesMomentos).map((_, i) =>
+    (i * Math.ceil(momentos.length / panelesMomentos.length)) % momentos.length
+  );
+
+  function aplicarMomento(panel, indice) {
+    const img = panel.querySelector('.foto-momento img');
+    const h3  = panel.querySelector('h3');
+    const p   = panel.querySelector('p');
+    const m   = momentos[indice];
+    img.src        = m.img;
+    img.alt        = m.titulo;
+    h3.textContent = m.titulo;
+    p.textContent  = m.desc;
+  }
+
+  panelesMomentos.forEach((panel, i) => aplicarMomento(panel, indicesPaneles[i]));
+
+  const intervalo = 10000;
+  panelesMomentos.forEach((panel, panelIdx) => {
+    panel.style.transition = 'opacity 0.6s ease';
+
+    function cambiarMomento() {
+      panel.style.opacity = '0';
+      setTimeout(() => {
+        let siguiente;
+        let intentos = 0;
+        do {
+          siguiente = (indicesPaneles[panelIdx] + 1) % momentos.length;
+          indicesPaneles[panelIdx] = siguiente;
+          intentos++;
+        } while (
+          intentos < momentos.length &&
+          indicesPaneles.some((idx, i) => i !== panelIdx && idx === siguiente)
+        );
+        aplicarMomento(panel, indicesPaneles[panelIdx]);
+        panel.style.opacity = '1';
+      }, 600);
+    }
+
+    setTimeout(() => {
+      setInterval(cambiarMomento, intervalo);
+    }, panelIdx * (intervalo / panelesMomentos.length));
+  });
+
+  const outfits = [
+    { img: 'outfits/blair/bo1.jpeg',      ep: 'T2 · E01', desc: 'Regreso a la escuela Constance' },
+    { img: 'outfits/serena/so1.jpg',       ep: 'T1 · E10', desc: 'Fiesta de disfraces' },
+    { img: 'outfits/georgina/go1.jpg',     ep: 'T2 · E15', desc: 'Cena de Eleanor Waldorf' },
+    { img: 'outfits/chuck/co1.jpg',        ep: 'T1 · E07', desc: 'La fiesta de los Archibald' },
+    { img: 'outfits/nate/no1.jpg',         ep: 'T3 · E11', desc: 'Torneo de polo en el club de campo' },
+    { img: 'outfits/dan/do1.jpg',          ep: 'T3 · E05', desc: 'Gala benéfica de "Save the Pier"' },
+    { img: 'outfits/blair/bo2.jpeg',       ep: 'T3 · E03', desc: 'Fiesta de la hermandad de Yale' },
+    { img: 'outfits/serena/so2.jpg',       ep: 'T2 · E18', desc: 'Boda de Lily y Bart' },
+    { img: 'outfits/georgina/go2.jpg',     ep: 'T2 · E14', desc: 'Navidad en el Palace Hotel' },
+    { img: 'outfits/chuck/co2.jpg',        ep: 'T1 · E12', desc: 'Debutante ball de la alta sociedad' },
+    { img: 'outfits/nate/no2.jpg',         ep: 'T4 · E09', desc: 'Estreno del musical de Juliet' },
+    { img: 'outfits/dan/do2.jpg',          ep: 'T4 · E02', desc: 'Cena de acción de gracias' },
+    { img: 'outfits/georgina/go3.jpg',     ep: 'T3 · E19', desc: 'Cumpleaños de Serena' },
+    { img: 'outfits/chuck/co3.jpg',        ep: 'T2 · E06', desc: 'Noche de póker en el Empire' },
+    { img: 'outfits/blair/bo3.jpeg',       ep: 'T4 · E13', desc: 'Lanzamiento del "Spectator"' },
+    { img: 'outfits/dan/do3.jpg',          ep: 'T5 · E09', desc: 'Rave en Brooklyn' },
+    { img: 'outfits/serena/so3.jpg',       ep: 'T3 · E17', desc: 'Fiesta en Miami' },
+    { img: 'outfits/nate/no3.jpg',         ep: 'T3 · E08', desc: 'Cena de los Vanderbilt' },
+    { img: 'outfits/serena/so5.jpg',       ep: 'T4 · E05', desc: 'Preestreno de película de Sage' },
+    { img: 'outfits/georgina/go4.jpg',     ep: 'T5 · E12', desc: 'Reunión de antiguos alumnos' },
+    { img: 'outfits/blair/bo5.jpg',        ep: 'T6 · E08', desc: 'Boda de Blair y Chuck' },
+    { img: 'outfits/blair/bo6.jpg',        ep: 'T5 · E22', desc: 'Fiesta de los Archibald' },
+    { img: 'outfits/chuck/co4.jpg',        ep: 'T6 · E05', desc: 'Monopoly benéfico en el Empire' },
+    { img: 'outfits/serena/so4.jpg',       ep: 'T6 · E03', desc: 'Evento de moda' }
+  ];
+
+  const elementosEstilo = document.querySelectorAll('.elemento-estilo');
+  const intervaloOutfits = 10000;
+  const indicesOutfits = Array.from(elementosEstilo).map((_, i) => i % outfits.length);
+
+  function aplicarOutfit(el, idx) {
+    const img  = el.querySelector('.imagen-estilo img');
+    const span = el.querySelector('span');
+    const p    = el.querySelector('p');
+    const o    = outfits[idx];
+    img.src          = o.img;
+    img.alt          = o.desc;
+    span.textContent = o.ep;
+    p.textContent    = o.desc;
+  }
+
+  elementosEstilo.forEach((el, i) => {
+    el.style.transition = 'opacity 0.6s ease';
+    aplicarOutfit(el, indicesOutfits[i]);
+  });
+
+  elementosEstilo.forEach((el, idx) => {
+    function cambiarOutfit() {
+      el.style.opacity = '0';
+      setTimeout(() => {
+        let siguiente;
+        let intentos = 0;
+        do {
+          siguiente = (indicesOutfits[idx] + 1) % outfits.length;
+          indicesOutfits[idx] = siguiente;
+          intentos++;
+        } while (
+          intentos < outfits.length &&
+          indicesOutfits.some((v, i) => i !== idx && v === siguiente)
+        );
+        aplicarOutfit(el, indicesOutfits[idx]);
+        el.style.opacity = '1';
+      }, 600);
+    }
+
+    setTimeout(() => {
+      setInterval(cambiarOutfit, intervaloOutfits);
+    }, idx * (intervaloOutfits / elementosEstilo.length));
+  });
+</script>
+<script>
+  const revelarAlScrollear = () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.personajes, .momentos-panel, .estilo, .footer-grid').forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  };
+
+  window.addEventListener('load', revelarAlScrollear);
+</script>
+<script>
+  const GG_MENSAJES = [
+    "Spotted: alguien que conoce sus secretos del Upper East Side. Bienvenido al círculo. XOXO, Gossip Girl.",
+    "¿Pensabas que nadie te veía? Siempre estoy mirando, querido. XOXO, Gossip Girl.",
+    "Un fan verdadero. De esos ya no quedan muchos en este lado de Manhattan. XOXO, Gossip Girl.",
+    "Dijeron que los secretos no duran para siempre. Tenían razón. XOXO, Gossip Girl.",
+    "El Upper East Side tiene memoria larga. Y yo, más. XOXO, Gossip Girl."
+  ];
+
+  let secuencia = '';
+  let typingTimer = null;
+
+  function cerrarBlast() {
+    const blast = document.getElementById('gg-blast');
+    blast.classList.remove('visible');
+    secuencia = '';
+  }
+
+  function escribirTexto(texto) {
+    const contenedor = document.getElementById('gg-blast-texto');
+    let i = 0;
+    clearInterval(typingTimer);
+
+    typingTimer = setInterval(() => {
+      const cursor = document.getElementById('gg-blast-cursor');
+      if (!cursor) { clearInterval(typingTimer); return; }
+      if (i < texto.length) {
+        contenedor.insertBefore(document.createTextNode(texto[i]), cursor);
+        i++;
+      } else {
+        clearInterval(typingTimer);
+      }
+    }, 32);
+  }
+
+  function activarBlast() {
+    const mensaje = GG_MENSAJES[Math.floor(Math.random() * GG_MENSAJES.length)];
+    const blast   = document.getElementById('gg-blast');
+    const contenedor = document.getElementById('gg-blast-texto');
+
+    contenedor.innerHTML = '<span id="gg-blast-cursor"></span>';
+
+    blast.classList.add('visible');
+    setTimeout(() => escribirTexto(mensaje), 500);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return;
+
+    secuencia += e.key.toUpperCase();
+    if (secuencia.length > 4) secuencia = secuencia.slice(-4);
+
+    if (secuencia === 'XOXO') {
+      secuencia = '';
+      activarBlast();
+    }
+  });
+</script>
+<script>
+  function abrirTip() {
+    document.getElementById('tip-formulario').style.display = 'block';
+    document.getElementById('tip-confirmacion').style.display = 'none';
+    document.getElementById('tip-textarea').value = '';
+    document.getElementById('tip-panel').classList.add('visible');
+  }
+
+  function cerrarTip() {
+    document.getElementById('tip-panel').classList.remove('visible');
+  }
+
+  function enviarTip() {
+    const texto = document.getElementById('tip-textarea').value.trim();
+    if (!texto) {
+      document.getElementById('tip-textarea').focus();
+      return;
+    }
+    document.getElementById('tip-formulario').style.display = 'none';
+    document.getElementById('tip-confirmacion').style.display = 'block';
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="preload" as="image" href="favicon1.png">
+  <link rel="icon" type="image/jpeg" href="favicon1.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gossip Girl · Personajes</title>
+  <link rel="preload" as="image" href="ny.jpeg">
+  <link rel="preload" as="image" href="logo2.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=optional" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background-color: #0d0d0d;
+      color: #1a1a1a;
+      max-width: 960px;
+      margin: 0 auto;
+      border: 2px solid #c9b99a;
+      position: relative;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 28px;
+      border-bottom: 2px solid #c9b99a;
+      background-color: #101010;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav .logo-img {
+      height: 60px;
+      width: 200px;
+      display: block;
+      object-fit: contain;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      font-family: 'EB Garamond', serif;
+      font-size: 16px;
+      letter-spacing: 1px;
+      color: #ffffff;
+    }
+
+    nav ul li a:hover {
+      color: #8b1a2f;
+    }
+
+    nav ul li a.activo {
+      color: #c9b99a;
+      text-shadow: 0 0 8px rgba(201, 185, 154, 0.8), 0 0 3px rgba(201, 185, 154, 0.9);
+    }
+
+    .breadcrumb {
+      background-color: #faf8f5;
+      padding: 10px 28px;
+      border-bottom: 1px solid #e8e0d5;
+      font-size: 15px;
+      color: #999;
+    }
+
+    .breadcrumb a {
+      color: #8b1a2f;
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    .breadcrumb span {
+      margin: 0 6px;
+    }
+
+    .bloque-quote {
+      background-color: #faf8f5;
+      padding: 10px 56px 20px;
+      border-bottom: 2px solid #c9b99a;
+      position: relative;
+    }
+
+    .quote-comilla-abre {
+      font-family: 'Playfair Display', serif;
+      font-size: 72px;
+      color: #c9b99a;
+      line-height: 1;
+      position: absolute;
+      top: 24px;
+      left: 48px;
+      opacity: 0.6;
+    }
+
+    .quote-comilla-cierra {
+      font-family: 'Playfair Display', serif;
+      font-size: 72px;
+      color: #c9b99a;
+      line-height: 1;
+      position: absolute;
+      bottom: 24px;
+      right: 48px;
+      opacity: 0.6;
+    }
+
+    .quote-texto {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 21px;
+      color: #1a1a1a;
+      line-height: 36px;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      padding: 16px 0;
+    }
+
+    .quote-atribucion {
+      text-align: center;
+      margin-top: 14px;
+      font-size: 14px;
+      color: #8b1a2f;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-family: 'EB Garamond', serif;
+    }
+
+    .bloque-intro {
+      background-color: #f0ece5;
+      padding: 40px;
+      border-bottom: 2px solid #c9b99a;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 36px;
+      align-items: start;
+    }
+
+    .intro-foto-col {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .intro-foto {
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      background-color: #ddd;
+      border: 1.5px solid #c9b99a;
+      overflow: hidden;
+      border-radius: 3px;
+    }
+
+    .intro-foto img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    .intro-datos-rapidos {
+      border: 1px solid #c9b99a;
+      background-color: #faf8f5;
+      padding: 12px 14px;
+      border-radius: 3px;
+    }
+
+    .intro-datos-rapidos h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #8b1a2f;
+      margin-bottom: 10px;
+    }
+
+    .intro-datos-rapidos ul {
+      list-style: none;
+    }
+
+    .intro-datos-rapidos ul li {
+      font-size: 13.5px;
+      line-height: 24px;
+      color: #555;
+      border-bottom: 1px solid #ede8e0;
+      padding: 3px 0;
+    }
+
+    .intro-datos-rapidos ul li:last-child {
+      border-bottom: none;
+    }
+
+    .intro-datos-rapidos ul li span {
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+
+    .intro-nombre {
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+
+    .intro-subtitulo {
+      font-size: 15px;
+      color: #8b1a2f;
+      font-style: italic;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .etiqueta-mini {
+      font-family: 'Playfair Display', serif;
+      font-size: 11.5px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #8b1a2f;
+      margin-bottom: 10px;
+      display: block;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #c9b99a;
+    }
+
+    .intro-bio {
+      font-size: 16px;
+      line-height: 29px;
+      color: #333;
+      text-align: justify;
+      margin-bottom: 24px;
+    }
+
+    .intro-bio p + p {
+      margin-top: 12px;
+    }
+
+    .intro-personalidad {
+      font-size: 16px;
+      line-height: 29px;
+      color: #333;
+      text-align: justify;
+    }
+
+    .bloque-relaciones {
+      background-color: #faf8f5;
+      padding: 36px 40px;
+      border-bottom: 2px solid #c9b99a;
+    }
+
+    .etiqueta-seccion {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .etiqueta-seccion::before,
+    .etiqueta-seccion::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: #8b1a2f;
+    }
+
+    .etiqueta-seccion span {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      white-space: nowrap;
+    }
+
+    .relaciones-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .relacion-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid #e0d9cf;
+      background-color: #fff;
+      border-radius: 3px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s ease;
+    }
+
+    .relacion-item:hover {
+      border-color: #8b1a2f;
+    }
+
+    .relacion-miniatura {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1.5px solid #c9b99a;
+      flex-shrink: 0;
+      background-color: #ddd;
+    }
+
+    .relacion-miniatura img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .relacion-info h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 13.5px;
+      color: #1a1a1a;
+      margin-bottom: 2px;
+    }
+
+    .relacion-info p {
+      font-size: 12px;
+      color: #8b1a2f;
+      font-style: italic;
+    }
+
+    .bloque-outfits {
+      background-color: #f0ece5;
+      padding: 36px 40px;
+      border-bottom: 2px solid #c9b99a;
+    }
+
+    .grid-outfits {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .outfit-item {
+      flex: 1;
+      min-width: 130px;
+      max-width: 180px;
+      text-align: center;
+    }
+
+    .outfit-foto {
+      width: 100%;
+      aspect-ratio: 2 / 4;
+      background-color: #ddd;
+      border: 1.5px solid #c9b99a;
+      overflow: hidden;
+      border-radius: 3px;
+      margin-bottom: 8px;
+    }
+
+    .outfit-foto img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    .outfit-item span {
+      font-size: 11px;
+      color: #8b1a2f;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: block;
+    }
+
+    .outfit-item p {
+      font-size: 13px;
+      color: #444;
+      font-style: italic;
+      line-height: 20px;
+      margin-top: 3px;
+    }
+
+    footer {
+      background-color: #101010;
+      border-top: 2px solid #c9b99a;
+      padding: 40px 28px 24px;
+      color: #aaa;
+      font-family: 'EB Garamond', Georgia, serif;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 83px 1fr 1px 1fr;
+      gap: 0;
+      margin-bottom: 32px;
+    }
+
+    .footer-divisor {
+      background-color: #c9b99a;
+      margin: 0 50px;
+    }
+
+    .footer-col-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #c9b99a;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .footer-col p {
+      font-size: 14px;
+      line-height: 26px;
+      color: #888;
+      font-style: italic;
+    }
+
+    .footer-col a[href="mapadesitio.html"] {
+      transition: color 0.2s ease, letter-spacing 0.2s ease;
+    }
+
+    .footer-col a[href="mapadesitio.html"]:hover {
+      color: #8b1a2f !important;
+      letter-spacing: 1.5px;
+    }
+
+    .footer-col-contacto p {
+      font-size: 14px;
+      line-height: 28px;
+      color: #888;
+    }
+
+    .footer-col-contacto a {
+      color: #c9b99a;
+      text-decoration: none;
+    }
+
+    .footer-col-contacto a:hover {
+      color: #8b1a2f;
+    }
+
+    .footer-redes {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-redes a {
+      font-size: 14px;
+      color: #888;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-redes a:hover {
+      color: #c9b99a;
+    }
+
+    .footer-redes .red-icono-img {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #2a2a2a;
+      padding-top: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .footer-bottom p {
+      font-size: 12px;
+      color: #E0E0E0;
+      letter-spacing: 0.5px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(28px);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #tip-panel {
+      position: fixed;
+      bottom: -340px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(860px, 96vw);
+      background-color: #0d0d0d;
+      border: 1.5px solid #c9b99a;
+      border-bottom: none;
+      padding: 28px 32px 24px;
+      z-index: 9998;
+      box-shadow: 0 -8px 40px rgba(0,0,0,0.7);
+      transition: bottom 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    #tip-panel.visible {
+      bottom: 0;
+    }
+
+    #tip-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    #tip-panel-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: #c9b99a;
+      letter-spacing: 1px;
+    }
+
+    #tip-panel-subtitulo {
+      font-family: 'EB Garamond', serif;
+      font-size: 13.5px;
+      color: #fff;
+      font-style: italic;
+      margin-top: 3px;
+    }
+
+    #tip-panel-cerrar {
+      background: none;
+      border: 1px solid #3a3a3a;
+      color: #fff;
+      font-family: 'EB Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+
+    #tip-panel-cerrar:hover {
+      border-color: #c9b99a;
+      color: #c9b99a;
+    }
+
+    #tip-textarea {
+      width: 100%;
+      height: 90px;
+      background-color: #141414;
+      border: 1px solid #2a2a2a;
+      color: #e8e0d5;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 15.5px;
+      line-height: 26px;
+      padding: 12px 14px;
+      resize: none;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    #tip-textarea::placeholder {
+      color: #444;
+      font-style: italic;
+    }
+
+    #tip-textarea:focus {
+      border-color: #c9b99a;
+    }
+
+    #tip-panel-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    #tip-aviso {
+      font-family: 'EB Garamond', serif;
+      font-size: 12.5px;
+      color: #fff;
+      font-style: italic;
+    }
+
+    #tip-enviar {
+      background: none;
+      border: 1px solid #c9b99a;
+      color: #c9b99a;
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    #tip-enviar:hover {
+      background-color: #c9b99a;
+      color: #0d0d0d;
+    }
+
+    #tip-confirmacion {
+      display: none;
+      text-align: center;
+      padding: 10px 0 4px;
+    }
+
+    #tip-confirmacion p:first-child {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: #c9b99a;
+      margin-bottom: 8px;
+    }
+
+    #tip-confirmacion p:last-child {
+      font-family: 'EB Garamond', serif;
+      font-size: 15px;
+      color: #666;
+      font-style: italic;
+    }
+
+    #gg-blast {
+      position: fixed;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(860px, 96vw);
+      background-color: #0d0d0d;
+      border: 1.5px solid #c9b99a;
+      border-top: none;
+      padding: 18px 28px 16px;
+      z-index: 9999;
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.7);
+      transition: top 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    #gg-blast.visible {
+      top: 0;
+    }
+
+    #gg-blast-logo {
+      height: 38px;
+      width: 120px;
+      object-fit: contain;
+      flex-shrink: 0;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    #gg-blast-cuerpo {
+      flex: 1;
+    }
+
+    #gg-blast-etiqueta {
+      font-family: 'Playfair Display', serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #c9b99a;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    #gg-blast-texto {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 16px;
+      color: #e8e0d5;
+      line-height: 26px;
+      min-height: 26px;
+    }
+
+    #gg-blast-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 15px;
+      background-color: #c9b99a;
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: parpadeo 0.8s step-end infinite;
+    }
+
+    @keyframes parpadeo {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    #gg-blast-cerrar {
+      background: none;
+      border: 1px solid #3a3a3a;
+      color: #666;
+      font-family: 'EB Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    #gg-blast-cerrar:hover {
+      border-color: #c9b99a;
+      color: #c9b99a;
+    }
+
+    .outfit-item {
+      cursor: pointer;
+    }
+
+    .outfit-item:hover .outfit-foto {
+      border-color: #8b1a2f;
+      box-shadow: 0 4px 18px rgba(139,26,47,0.18);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    #outfit-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(10,8,6,0.82);
+      backdrop-filter: blur(3px);
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+
+    #outfit-modal.abierto {
+      display: flex;
+    }
+
+    .outfit-modal-caja {
+      background: #faf8f5;
+      border: 1.5px solid #c9b99a;
+      border-radius: 4px;
+      max-width: 320px;
+      width: 100%;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      padding: 20px 20px 18px;
+      text-align: center;
+      position: relative;
+      animation: modalEntrada 0.22s ease;
+    }
+
+    @keyframes modalEntrada {
+      from { opacity: 0; transform: translateY(18px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .outfit-modal-cerrar {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: #aaa;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+
+    .outfit-modal-cerrar:hover { color: #8b1a2f; }
+
+    .outfit-modal-img-wrap {
+      width: 55%;
+      max-width: 55%;
+      aspect-ratio: 2 / 4;
+      border: 1.5px solid #c9b99a;
+      border-radius: 3px;
+      margin: 0 auto 12px;
+    }
+
+    .outfit-modal-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-position: top;
+      object-fit: cover;
+      display: block;
+    }
+
+    .outfit-modal-ep {
+      font-size: 11px;
+      color: #8b1a2f;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 3px;
+    }
+
+    .outfit-modal-nombre {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      color: #1a1a1a;
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    .outfit-modal-califica {
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    .estrellas {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      margin-bottom: 8px;
+    }
+
+    .estrella {
+      font-size: 26px;
+      color: #ddd;
+      cursor: pointer;
+      transition: color 0.15s, transform 0.15s;
+      user-select: none;
+      line-height: 1;
+    }
+
+    .estrella.activa {
+      color: #c9b99a;
+      transform: scale(1.15);
+    }
+    .outfit-modal-resultado {
+      font-size: 13px;
+      color: #8b1a2f;
+      font-style: italic;
+      min-height: 20px;
+      font-family: 'EB Garamond', serif;
+      letter-spacing: 0.5px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .outfit-modal-resultado.visible {
+      opacity: 1;
+    }
+    .estrella:hover,
+    .estrella.hover,
+
+  </style>
+</head>
+<body>
+
+<div id="gg-blast" role="alert" aria-live="polite">
+  <img id="gg-blast-logo" src="logo2.png" alt="Gossip Girl">
+  <div id="gg-blast-cuerpo">
+    <span id="gg-blast-etiqueta">Gossip Girl · Exclusiva</span>
+    <div id="gg-blast-texto"><span id="gg-blast-cursor"></span></div>
+  </div>
+  <button id="gg-blast-cerrar" onclick="cerrarBlast()">✕ cerrar</button>
+</div>
+
+<div id="tip-panel">
+  <div id="tip-panel-header">
+    <div>
+      <div id="tip-panel-titulo">Envía un tip anónimo</div>
+      <div id="tip-panel-subtitulo">Gossip Girl está escuchando. Siempre.</div>
+    </div>
+    <button id="tip-panel-cerrar" onclick="cerrarTip()">✕ cerrar</button>
+  </div>
+  <div id="tip-formulario">
+    <textarea id="tip-textarea" placeholder="¿Qué sabes tú que el Upper East Side no debería saber...?"></textarea>
+    <div id="tip-panel-footer">
+      <span id="tip-aviso">﹗Tu identidad nunca será revelada. O casi nunca.</span>
+      <button id="tip-enviar" onclick="enviarTip()">Enviar ➤</button>
+    </div>
+  </div>
+  <div id="tip-confirmacion">
+    <p>Recibido. XOXO.</p>
+    <p>Tu secreto está en buenas manos. Gossip Girl sabrá qué hacer con él.</p>
+  </div>
+</div>
+
+<nav>
+  <div class="logo">
+    <a href="index.html">
+      <img class="logo-img" src="logo2.png" alt="Gossip Girl Logo">
+    </a>
+  </div>
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="personajes.html" class="activo">Personajes</a></li>
+    <li><a href="quiz.html">Quiz</a></li>
+    <li><a href="wiki.html">Wiki</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+  </ul>
+</nav>
+
+<div class="breadcrumb">
+  <a href="personajes.html">Personajes</a>
+  <span>›</span>
+  Georgina Sparks
+</div>
+
+<section class="bloque-quote">
+  <div class="quote-comilla-abre">"</div>
+  <p class="quote-texto">I'm not mean. I just say what everyone else is afraid to.</p>
+  <p class="quote-atribucion">— Georgina Sparks</p>
+  <div class="quote-comilla-cierra">"</div>
+</section>
+
+<section class="bloque-intro">
+  <div class="intro-foto-col">
+    <div class="intro-foto">
+      <img src="personajes/personajes/g.jpeg" alt="Georgina Sparks">
+    </div>
+    <div class="intro-datos-rapidos">
+      <h4>Datos</h4>
+      <ul>
+        <li><span>Actor/Actriz:</span> Michelle Trachtenberg</li>
+        <li><span>Temporadas:</span> 1–6</li>
+        <li><span>Familia:</span> Sparks</li>
+        <li><span>Residencia:</span> Upper East Side / Europa</li>
+      </ul>
+    </div>
+  </div>
+  <div class="intro-texto-col">
+    <h1 class="intro-nombre">Georgina Sparks</h1>
+    <span class="intro-subtitulo">El caos con cara de ángel</span>
+    <span class="etiqueta-mini">Biografía</span>
+    <div class="intro-bio">
+      <p>
+        Georgina Sparks es, desde su primera aparición, una fuerza de la naturaleza. Antigua
+        compañera de correrías de Serena van der Woodsen durante sus años más salvajes, Georgina
+        regresa al Upper East Side al final de la primera temporada dispuesta a destruir la nueva
+        vida que Serena ha construido tan cuidadosamente, armada con los secretos que comparten
+        y con una sonrisa que no augura nada bueno.
+      </p>
+      <p>
+        <span class="text-sin">A lo largo de la serie, Georgina reaparece cíclicamente, siempre en el momento más
+        inoportuno y siempre con una agenda propia. Sus motivaciones oscilan entre la venganza,
+        el aburrimiento y una inclinación genuina hacia el caos por el caos mismo. Un breve
+        período de redención religiosa —bajo el alias de Sarah— no dura demasiado, y Georgina
+        termina la serie exactamente como empezó: impredecible, peligrosa y completamente
+        entretenida.</span>
+      </p>
+    </div>
+    <span class="etiqueta-mini">Personalidad</span>
+    <div class="intro-personalidad">
+      <p>
+        <span class="text-sin">Inteligente, manipuladora y dotada de un talento casi sobrenatural para aparecer donde
+        más daño puede hacer, Georgina es el personaje más honesto de Gossip Girl en un sentido
+        retorcido: nunca pretende ser buena. Su crueldad no está envuelta en etiqueta ni en
+        justificaciones sociales —simplemente actúa, disfruta las consecuencias y se marcha
+        antes de que llegue la factura. Es, en cierto modo, la única que juega sin reglas en
+        un mundo construido sobre ellas.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="bloque-relaciones">
+  <div class="etiqueta-seccion"><span>Relaciones</span></div>
+  <div class="relaciones-grid">
+    <a href="serena.html" class="relacion-item">
+      <div class="relacion-miniatura"><img src="personajes/personajes/s.jpeg" alt="Serena van der Woodsen"></div>
+      <div class="relacion-info"><h4>Serena van der Woodsen</h4><p>Enemiga / cómplice</p></div>
+    </a>
+    <a href="dan.html" class="relacion-item">
+      <div class="relacion-miniatura"><img src="personajes/personajes/d.jpeg" alt="Dan Humphrey"></div>
+      <div class="relacion-info"><h4>Dan Humphrey</h4><p>Ex / padre de Milo</p></div>
+    </a>
+    <a href="blair.html" class="relacion-item">
+      <div class="relacion-miniatura"><img src="personajes/personajes/b.jpeg" alt="Blair Waldorf"></div>
+      <div class="relacion-info"><h4>Blair Waldorf</h4><p>Rival / aliada ocasional</p></div>
+    </a>
+    <a href="chuck.html" class="relacion-item">
+      <div class="relacion-miniatura"><img src="personajes/personajes/c.jpeg" alt="Chuck Bass"></div>
+      <div class="relacion-info"><h4>Chuck Bass</h4><p>Aliado ocasional</p></div>
+    </a>
+    <a href="nate.html" class="relacion-item">
+      <div class="relacion-miniatura"><img src="personajes/personajes/n.jpeg" alt="Nate Archibald"></div>
+      <div class="relacion-info"><h4>Nate Archibald</h4><p>Conocido</p></div>
+    </a>
+  </div>
+</section>
+
+<section class="bloque-outfits">
+  <div class="etiqueta-seccion"><span>Outfits Favoritos de los Fans</span></div>
+  <div class="grid-outfits">
+    <div class="outfit-item">
+      <div class="outfit-foto"><img src="outfits/georgina/go1.jpg" alt="Outfit Georgina 1"></div>
+      <span>T1 · E17</span><p>El regreso al Upper East Side</p>
+    </div>
+    <div class="outfit-item">
+      <div class="outfit-foto"><img src="outfits/georgina/go2.jpg" alt="Outfit Georgina 2"></div>
+      <span>T2 · E01</span><p>Sarah, la chica nueva</p>
+    </div>
+    <div class="outfit-item">
+      <div class="outfit-foto"><img src="outfits/georgina/go3.jpg" alt="Outfit Georgina 3"></div>
+      <span>T4 · E02</span><p>Milo y los secretos de París</p>
+    </div>
+    <div class="outfit-item">
+      <div class="outfit-foto"><img src="outfits/georgina/go4.jpg" alt="Outfit Georgina 4"></div>
+      <span>T5 · E24</span><p>La gran revelación final</p>
+    </div>
+  </div>
+</section>
+
+  <div id="outfit-modal" role="dialog" aria-modal="true">
+    <div class="outfit-modal-caja">
+      <button class="outfit-modal-cerrar" onclick="cerrarOutfitModal()" aria-label="Cerrar">✕</button>
+      <div class="outfit-modal-img-wrap">
+        <img id="modal-img" src="" alt="">
+      </div>
+      <div class="outfit-modal-ep" id="modal-ep"></div>
+      <div class="outfit-modal-nombre" id="modal-nombre"></div>
+      <div class="outfit-modal-califica">Califica este outfit</div>
+      <div class="estrellas" id="modal-estrellas">
+        <span class="estrella" data-val="1">★</span>
+        <span class="estrella" data-val="2">★</span>
+        <span class="estrella" data-val="3">★</span>
+        <span class="estrella" data-val="4">★</span>
+        <span class="estrella" data-val="5">★</span>
+      </div>
+      <div class="outfit-modal-resultado" id="modal-resultado"></div>
+    </div>
+  </div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <span class="footer-col-titulo">Ⓘ Sobre este sitio</span>
+      <p>Este es un fan site dedicado al Upper East Side. El contenido fue creado por y para fans de la serie original.</p>
+      <a href="mapadesitio.html" style="display:inline-block; margin-top:10px; font-family:'EB Garamond',serif; font-size:14px; color:#c9b99a; text-decoration:none; letter-spacing:0.5px;">🢒 Mapa de sitio 🢐</a>
+    </div>
+    <div class="footer-divisor"></div>
+    <div class="footer-col footer-col-contacto">
+      <span class="footer-col-titulo">☏ Contacto</span>
+      <p>¿Tienes algo que contarnos?<br>Escríbenos.</p>
+      <p style="margin-top:10px;"><a href="mailto:xoxo@gossipgirl-fan.com">✉ xoxo@gossipgirl-fan.com</a></p>
+      <button onclick="abrirTip()" onmouseover="this.style.color='#8b1a2f'" onmouseout="this.style.color='#c9b99a'" style="background:none; border:none; cursor:pointer; font-family:'EB Garamond',serif; font-size:14px; color:#c9b99a; text-decoration:none; padding:0; letter-spacing:0.5px;">
+        ✎ Envíanos un tip anónimo
+      </button>
+    </div>
+    <div class="footer-divisor"></div>
+    <div class="footer-col">
+      <span class="footer-col-titulo">⍟ Síguenos</span>
+      <div class="footer-redes">
+        <a href="https://x.com/gossip_girlfan3" target="_blank" rel="noopener noreferrer">
+          <img class="red-icono-img" src="iconos/x.jpg" alt="X Twitter" loading="lazy">
+          <span>X (Twitter): @gossip_girlfan3</span>
+        </a>
+        <a href="https://www.instagram.com/uppereastsidefan" target="_blank" rel="noopener noreferrer">
+          <img class="red-icono-img" src="iconos/insta.jpg" alt="Instagram" loading="lazy">
+          <span>Instagram: @UpperEastSideFan</span>
+        </a>
+        <a href="https://www.tiktok.com/@gossip.girlfp" target="_blank" rel="noopener noreferrer">
+          <img class="red-icono-img" src="iconos/tt.png" alt="TikTok" loading="lazy">
+          <span>TikTok: @gossip_girlfp</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Gossip Girl · Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  const revelarAlScrollear = () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.intro-datos-rapidos, .intro-datos-rapidos ul li, .text-sin, .etiqueta-mini, .etiqueta-seccion, .relacion-item, .outfit-item, .outfit-item span, .outfit-item p, .footer-grid').forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  };
+
+  window.addEventListener('load', revelarAlScrollear);
+</script>
+<script>
+  const GG_MENSAJES = [
+    "Spotted: alguien que conoce sus secretos del Upper East Side. Bienvenido al círculo. XOXO, Gossip Girl.",
+    "¿Pensabas que nadie te veía? Siempre estoy mirando, querido. XOXO, Gossip Girl.",
+    "Un fan verdadero. De esos ya no quedan muchos en este lado de Manhattan. XOXO, Gossip Girl.",
+    "Dijeron que los secretos no duran para siempre. Tenían razón. XOXO, Gossip Girl.",
+    "El Upper East Side tiene memoria larga. Y yo, más. XOXO, Gossip Girl."
+  ];
+
+  let secuencia = '';
+  let typingTimer = null;
+
+  function cerrarBlast() {
+    const blast = document.getElementById('gg-blast');
+    blast.classList.remove('visible');
+    secuencia = '';
+  }
+
+  function escribirTexto(texto) {
+    const contenedor = document.getElementById('gg-blast-texto');
+    let i = 0;
+    clearInterval(typingTimer);
+
+    typingTimer = setInterval(() => {
+      const cursor = document.getElementById('gg-blast-cursor');
+      if (!cursor) { clearInterval(typingTimer); return; }
+      if (i < texto.length) {
+        contenedor.insertBefore(document.createTextNode(texto[i]), cursor);
+        i++;
+      } else {
+        clearInterval(typingTimer);
+      }
+    }, 32);
+  }
+
+  function activarBlast() {
+    const mensaje = GG_MENSAJES[Math.floor(Math.random() * GG_MENSAJES.length)];
+    const blast = document.getElementById('gg-blast');
+    const contenedor = document.getElementById('gg-blast-texto');
+
+    contenedor.innerHTML = '<span id="gg-blast-cursor"></span>';
+
+    blast.classList.add('visible');
+    setTimeout(() => escribirTexto(mensaje), 500);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+
+    secuencia += e.key.toUpperCase();
+    if (secuencia.length > 4) secuencia = secuencia.slice(-4);
+
+    if (secuencia === 'XOXO') {
+      secuencia = '';
+      activarBlast();
+    }
+  });
+</script>
+<script>
+  function abrirTip() {
+    document.getElementById('tip-formulario').style.display = 'block';
+    document.getElementById('tip-confirmacion').style.display = 'none';
+    document.getElementById('tip-textarea').value = '';
+    document.getElementById('tip-panel').classList.add('visible');
+  }
+
+  function cerrarTip() {
+    document.getElementById('tip-panel').classList.remove('visible');
+  }
+
+  function enviarTip() {
+    const texto = document.getElementById('tip-textarea').value.trim();
+    if (!texto) {
+      document.getElementById('tip-textarea').focus();
+      return;
+    }
+    document.getElementById('tip-formulario').style.display = 'none';
+    document.getElementById('tip-confirmacion').style.display = 'block';
+  }
+</script>
+<script>
+    let calificacionActual = 0;
+
+    const MENSAJES_CALIFICACION = [
+      "Mmm… no es su mejor look.",
+      "Pasable. Puede hacerlo mejor.",
+      "Nada mal. Tiene potencial.",
+      "¡Qué buen gusto! Casi nivel Upper East Side.",
+      "✦ Perfección total. Upper East Side approved. ✦"
+    ];
+
+    function abrirOutfitModal(img, ep, nombre) {
+      document.getElementById('modal-img').src = img;
+      document.getElementById('modal-img').alt = nombre;
+      document.getElementById('modal-ep').textContent = ep;
+      document.getElementById('modal-nombre').textContent = nombre;
+      calificacionActual = 0;
+      actualizarEstrellas(0);
+      const res = document.getElementById('modal-resultado');
+      res.textContent = '';
+      res.classList.remove('visible');
+      document.getElementById('outfit-modal').classList.add('abierto');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function cerrarOutfitModal() {
+      document.getElementById('outfit-modal').classList.remove('abierto');
+      document.body.style.overflow = '';
+    }
+
+    function actualizarEstrellas(val) {
+      document.querySelectorAll('#modal-estrellas .estrella').forEach(s => {
+        const v = parseInt(s.dataset.val);
+        s.classList.toggle('activa', v <= val);
+      });
+    }
+
+    document.querySelectorAll('#modal-estrellas .estrella').forEach(s => {
+      s.addEventListener('mouseenter', () => actualizarEstrellas(parseInt(s.dataset.val)));
+      s.addEventListener('mouseleave', () => actualizarEstrellas(calificacionActual));
+      s.addEventListener('click', () => {
+        calificacionActual = parseInt(s.dataset.val);
+        actualizarEstrellas(calificacionActual);
+        const res = document.getElementById('modal-resultado');
+        res.textContent = MENSAJES_CALIFICACION[calificacionActual - 1];
+        res.classList.add('visible');
+      });
+    });
+
+    document.getElementById('outfit-modal').addEventListener('click', function(e) {
+      if (e.target === this) cerrarOutfitModal();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') cerrarOutfitModal();
+    });
+
+    document.querySelectorAll('.outfit-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('.outfit-foto img');
+        const ep = item.querySelector('span').textContent;
+        const nombre = item.querySelector('p').textContent;
+        abrirOutfitModal(img.src, ep, nombre);
+      });
+    });
+</script>
+</body>
+</html>

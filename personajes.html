@@ -1,0 +1,1103 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="preload" as="image" href="favicon1.png">
+  <link rel="icon" type="image/jpeg" href="favicon1.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gossip Girl · Personajes</title>
+  <link rel="preload" as="image" href="ny.jpeg">
+  <link rel="preload" as="image" href="logo2.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=optional" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background-color: #0d0d0d;
+      color: #1a1a1a;
+      max-width: 960px;
+      margin: 0 auto;
+      border: 2px solid #c9b99a;
+      position: relative;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 28px;
+      border-bottom: 2px solid #c9b99a;
+      background-color: #101010;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav .logo-img {
+      height: 60px;
+      width: 200px;
+      display: block;
+      object-fit: contain;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      font-family: 'EB Garamond', serif;
+      font-size: 16px;
+      letter-spacing: 1px;
+      color: #ffffff;
+    }
+
+    nav ul li a:hover {
+      color: #8b1a2f;
+    }
+
+    nav ul li a.activo {
+      color: #c9b99a;
+      text-shadow: 0 0 8px rgba(201, 185, 154, 0.8), 0 0 3px rgba(201, 185, 154, 0.9);
+    }
+
+    .hero-personajes {
+      text-align: center;
+      padding: 60px 20px 50px;
+      background-image: url('ny.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #e8e0d5;
+      border-bottom: 2px solid #c9b99a;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-personajes::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 1;
+    }
+
+    .hero-personajes h1,
+    .hero-personajes p {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-personajes h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 65px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      text-shadow: 0 0 15px rgba(255, 255, 200, 0.5), 2px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-personajes p {
+      margin-top: 14px;
+      font-style: italic;
+      font-size: 18px;
+      letter-spacing: 0.5px;
+      color: #e8e0d5;
+      text-shadow: 0 0 12px rgba(235, 224, 213, 0.7), 0 0 5px rgba(232, 224, 213, 0.8), 1px 1px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .filtro-barra {
+      background-color: #faf8f5;
+      border-bottom: 2px solid #c9b99a;
+      padding: 22px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .filtro-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .filtro-barra label {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #8b1a2f;
+      white-space: nowrap;
+    }
+
+    .filtro-select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-color: #fff;
+      border: 1.5px solid #c9b99a;
+      border-radius: 3px;
+      padding: 8px 36px 8px 14px;
+      font-family: 'EB Garamond', serif;
+      font-size: 15px;
+      color: #1a1a1a;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238b1a2f' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .filtro-select:focus {
+      outline: none;
+      border-color: #8b1a2f;
+      box-shadow: 0 0 0 3px rgba(139, 26, 47, 0.08);
+    }
+
+    .filtro-select:hover {
+      border-color: #8b1a2f;
+    }
+
+    .frase-quiz-link {
+      font-family: 'EB Garamond', serif;
+      font-size: 15px;
+      font-style: italic;
+      letter-spacing: 0.5px;
+      color: #8b1a2f;
+      text-decoration: none;
+      border-bottom: 1px dashed #8b1a2f;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .frase-quiz-link:hover {
+      color: #5e0e21;
+      border-bottom-color: #8b1a2f;
+    }
+
+    .etiqueta-seccion {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .etiqueta-seccion::before,
+    .etiqueta-seccion::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: #8b1a2f;
+    }
+
+    .etiqueta-seccion span {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      white-space: nowrap;
+    }
+
+    .bloque-grupo {
+      background-color: #faf8f5;
+      padding: 36px 40px;
+      border-bottom: 2px solid #c9b99a;
+    }
+
+    .bloque-grupo:nth-child(even) {
+      background-color: #f0ece5;
+    }
+
+    .grid-personajes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 50px;
+    }
+
+    .grid-personajes .tarjeta-wiki {
+      flex: 0 0 148px;
+      width: 148px;
+    }
+
+    .tarjeta-wiki {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border: 1.5px solid #c9b99a;
+      background-color: #fff;
+      overflow: hidden;
+      border-radius: 3px;
+    }
+
+    .tarjeta-wiki:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.13);
+      border-color: #8b1a2f;
+    }
+
+    div.tarjeta-wiki {
+      cursor: default;
+    }
+
+    div.tarjeta-wiki:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: #c9b99a;
+    }
+
+    .tarjeta-wiki .tw-foto {
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      background-color: #ddd;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .tarjeta-wiki .tw-foto img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .tarjeta-wiki:hover .tw-foto img {
+      transform: scale(1.04);
+    }
+
+    div.tarjeta-wiki:hover .tw-foto img {
+      transform: none;
+    }
+
+    .tw-info {
+      padding: 10px 12px 12px;
+      border-top: 1px solid #e8e0d5;
+    }
+
+    .tw-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 14.5px;
+      color: #1a1a1a;
+      margin-bottom: 3px;
+      line-height: 20px;
+    }
+
+    .tw-info p {
+      font-size: 12.5px;
+      color: #777;
+      font-style: italic;
+      line-height: 18px;
+    }
+
+    .bloque-grupo.oculto {
+      display: none;
+    }
+
+    footer {
+      background-color: #101010;
+      border-top: 2px solid #c9b99a;
+      padding: 40px 28px 24px;
+      color: #aaa;
+      font-family: 'EB Garamond', Georgia, serif;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 83px 1fr 1px 1fr;
+      gap: 0;
+      margin-bottom: 32px;
+    }
+
+    .footer-divisor {
+      background-color: #c9b99a;
+      margin: 0 50px;
+    }
+
+    .footer-col-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #c9b99a;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .footer-col p {
+      font-size: 14px;
+      line-height: 26px;
+      color: #888;
+      font-style: italic;
+    }
+
+    .footer-col a[href="mapadesitio.html"] {
+      transition: color 0.2s ease, letter-spacing 0.2s ease;
+    }
+
+    .footer-col a[href="mapadesitio.html"]:hover {
+      color: #8b1a2f !important;
+      letter-spacing: 1.5px;
+    }
+
+    .footer-col-contacto p {
+      font-size: 14px;
+      line-height: 28px;
+      color: #888;
+    }
+
+    .footer-col-contacto a {
+      color: #c9b99a;
+      text-decoration: none;
+    }
+
+    .footer-col-contacto a:hover {
+      color: #8b1a2f;
+    }
+
+    .footer-redes {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-redes a {
+      font-size: 14px;
+      color: #888;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-redes a:hover {
+      color: #c9b99a;
+    }
+
+    .footer-redes .red-icono-img {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #2a2a2a;
+      padding-top: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .footer-bottom p {
+      font-size: 12px;
+      color: #E0E0E0;
+      letter-spacing: 0.5px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(28px);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #tip-panel {
+      position: fixed;
+      bottom: -340px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(860px, 96vw);
+      background-color: #0d0d0d;
+      border: 1.5px solid #c9b99a;
+      border-bottom: none;
+      padding: 28px 32px 24px;
+      z-index: 9998;
+      box-shadow: 0 -8px 40px rgba(0,0,0,0.7);
+      transition: bottom 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    #tip-panel.visible {
+      bottom: 0;
+    }
+
+    #tip-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    #tip-panel-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: #c9b99a;
+      letter-spacing: 1px;
+    }
+
+    #tip-panel-subtitulo {
+      font-family: 'EB Garamond', serif;
+      font-size: 13.5px;
+      color: #fff;
+      font-style: italic;
+      margin-top: 3px;
+    }
+
+    #tip-panel-cerrar {
+      background: none;
+      border: 1px solid #3a3a3a;
+      color: #fff;
+      font-family: 'EB Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+
+    #tip-panel-cerrar:hover {
+      border-color: #c9b99a;
+      color: #c9b99a;
+    }
+
+    #tip-textarea {
+      width: 100%;
+      height: 90px;
+      background-color: #141414;
+      border: 1px solid #2a2a2a;
+      color: #e8e0d5;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 15.5px;
+      line-height: 26px;
+      padding: 12px 14px;
+      resize: none;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    #tip-textarea::placeholder {
+      color: #444;
+      font-style: italic;
+    }
+
+    #tip-textarea:focus {
+      border-color: #c9b99a;
+    }
+
+    #tip-panel-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    #tip-aviso {
+      font-family: 'EB Garamond', serif;
+      font-size: 12.5px;
+      color: #fff;
+      font-style: italic;
+    }
+
+    #tip-enviar {
+      background: none;
+      border: 1px solid #c9b99a;
+      color: #c9b99a;
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    #tip-enviar:hover {
+      background-color: #c9b99a;
+      color: #0d0d0d;
+    }
+
+    #tip-confirmacion {
+      display: none;
+      text-align: center;
+      padding: 10px 0 4px;
+    }
+
+    #tip-confirmacion p:first-child {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: #c9b99a;
+      margin-bottom: 8px;
+    }
+
+    #tip-confirmacion p:last-child {
+      font-family: 'EB Garamond', serif;
+      font-size: 15px;
+      color: #666;
+      font-style: italic;
+    }
+
+    #gg-blast {
+      position: fixed;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(860px, 96vw);
+      background-color: #0d0d0d;
+      border: 1.5px solid #c9b99a;
+      border-top: none;
+      padding: 18px 28px 16px;
+      z-index: 9999;
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.7);
+      transition: top 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    #gg-blast.visible {
+      top: 0;
+    }
+
+    #gg-blast-logo {
+      height: 38px;
+      width: 120px;
+      object-fit: contain;
+      flex-shrink: 0;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    #gg-blast-cuerpo {
+      flex: 1;
+    }
+
+    #gg-blast-etiqueta {
+      font-family: 'Playfair Display', serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #c9b99a;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    #gg-blast-texto {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 16px;
+      color: #e8e0d5;
+      line-height: 26px;
+      min-height: 26px;
+    }
+
+    #gg-blast-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 15px;
+      background-color: #c9b99a;
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: parpadeo 0.8s step-end infinite;
+    }
+
+    @keyframes parpadeo {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    #gg-blast-cerrar {
+      background: none;
+      border: 1px solid #3a3a3a;
+      color: #666;
+      font-family: 'EB Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    #gg-blast-cerrar:hover {
+      border-color: #c9b99a;
+      color: #c9b99a;
+    }
+  </style>
+</head>
+<body>
+
+<div id="gg-blast" role="alert" aria-live="polite">
+  <img id="gg-blast-logo" src="logo2.png" alt="Gossip Girl">
+  <div id="gg-blast-cuerpo">
+    <span id="gg-blast-etiqueta">Gossip Girl · Exclusiva</span>
+    <div id="gg-blast-texto"><span id="gg-blast-cursor"></span></div>
+  </div>
+  <button id="gg-blast-cerrar" onclick="cerrarBlast()">✕ cerrar</button>
+</div>
+
+<div id="tip-panel">
+  <div id="tip-panel-header">
+    <div>
+      <div id="tip-panel-titulo">Envía un tip anónimo</div>
+      <div id="tip-panel-subtitulo">Gossip Girl está escuchando. Siempre.</div>
+    </div>
+    <button id="tip-panel-cerrar" onclick="cerrarTip()">✕ cerrar</button>
+  </div>
+  <div id="tip-formulario">
+    <textarea id="tip-textarea" placeholder="¿Qué sabes tú que el Upper East Side no debería saber...?"></textarea>
+    <div id="tip-panel-footer">
+      <span id="tip-aviso">﹗Tu identidad nunca será revelada. O casi nunca.</span>
+      <button id="tip-enviar" onclick="enviarTip()">Enviar ➤</button>
+    </div>
+  </div>
+  <div id="tip-confirmacion">
+    <p>Recibido. XOXO.</p>
+    <p>Tu secreto está en buenas manos. Gossip Girl sabrá qué hacer con él.</p>
+  </div>
+</div>
+
+<nav>
+  <div class="logo">
+    <a href="index.html">
+      <img class="logo-img" src="logo2.png" alt="Gossip Girl Logo">
+    </a>
+  </div>
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="personajes.html" class="activo">Personajes</a></li>
+    <li><a href="quiz.html">Quiz</a></li>
+    <li><a href="wiki.html">Wiki</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+  </ul>
+</nav>
+
+<section class="hero-personajes">
+  <h1>PERSONAJES</h1>
+  <p>Conoce a los habitantes del Upper East Side</p>
+</section>
+
+<div class="filtro-barra">
+  <div class="filtro-controls">
+    <label for="filtro">⥭Filtrar:</label>
+    <select class="filtro-select" id="filtro">
+      <option value="todos">Todos</option>
+      <option value="principales">Principales</option>
+      <option value="secundarios">Secundarios</option>
+    </select>
+  </div>
+  <a href="quiz.html#quiz2-inicio-col" class="frase-quiz-link">⤿  ¿Sabes quién eres… y quiénes son ellos? Descúbrelo ⌕</a>
+</div>
+
+<section class="bloque-grupo" id="waldorf">
+  <div class="etiqueta-seccion"><span>Familia Waldorf</span></div>
+  <div class="grid-personajes">
+    <a href="blair.html" class="tarjeta-wiki" data-tipo="principal">
+      <div class="tw-foto">
+        <img src="personajes/personajes/b.jpeg" alt="Blair Waldorf">
+      </div>
+      <div class="tw-info">
+        <h3>Blair Waldorf</h3>
+        <p>Reina 𝓑</p>
+      </div>
+    </a>
+    <div class="tarjeta-wiki" data-tipo="secundario">
+      <div class="tw-foto">
+        <img src="personajes/personajes/el.jpeg" alt="Eleanor Waldorf">
+      </div>
+      <div class="tw-info">
+        <h3>Eleanor Waldorf</h3>
+        <p>Diseñadora de moda</p>
+      </div>
+    </div>
+    <div class="tarjeta-wiki" data-tipo="secundario">
+      <div class="tw-foto">
+        <img src="personajes/personajes/cy.jpeg" alt="Cyrus Rose">
+      </div>
+      <div class="tw-info">
+        <h3>Cyrus Rose</h3>
+        <p>Padrastro de Blair</p>
+      </div>
+    </div>
+    <div class="tarjeta-wiki" data-tipo="secundario">
+      <div class="tw-foto">
+        <img src="personajes/personajes/ha.jpeg" alt="Harold Waldorf">
+      </div>
+      <div class="tw-info">
+        <h3>Harold Waldorf</h3>
+        <p>Padre de Blair</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bloque-grupo" id="vdw">
+  <div class="etiqueta-seccion"><span>Familia Van Der Woodsen</span></div>
+  <div class="grid-personajes">
+    <a href="serena.html" class="tarjeta-wiki" data-tipo="principal">
+      <div class="tw-foto">
+        <img src="personajes/personajes/s.jpeg" alt="Serena van der Woodsen" loading="lazy">
+      </div>
+      <div class="tw-info">
+        <h3>Serena van der Woodsen</h3>
+        <p>It girl</p>
+      </div>
+    </a>
+    <div class="tarjeta-wiki" data-tipo="secundario">
+      <div class="tw-foto">
+        <img src="personajes/personajes/e.jpeg" alt="Eric van der Woodsen" loading="lazy">
+      </div>
+      <div class="tw-info">
+        <h3>Eric van der Woodsen</h3>
+        <p>Hermano de Serena</p>
+      </div>
+    </div>
+    <div class="tarjeta-wiki" data-tipo="secundario">
+      <div class="tw-foto">
+        <img src="personajes/personajes/l.jpeg" alt="Lily van der Woodsen" loading="lazy">
+      </div>
+      <div class="tw-info">
+        <h3>Lily van der Woodsen</h3>
+        <p>Matriarca del Upper East Side</p>
+      </div>
+    </div>
+    <div class="tarjeta-wiki" data-tipo="secundario">
+      <div class="tw-foto">
+        <img src="personajes/personajes/w.jpeg" alt="William van der Woodsen" loading="lazy">
+      </div>
+      <div class="tw-info">
+        <h3>William van der Woodsen</h3>
+        <p>Padre de Serena</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bloque-grupo" id="humphrey">
+  <div class="etiqueta-seccion"><span>Familia Humphrey</span></div>
+  <div class="grid-personajes">
+    <a href="dan.html" class="tarjeta-wiki" data-tipo="principal">
+      <div class="tw-foto">
+        <img src="personajes/personajes/d.jpeg" alt="Dan Humphrey" loading="lazy">
+      </div>
+      <div class="tw-info">
+        <h3>Dan Humphrey</h3>
+        <p>El chico de Brooklyn</p>
+      </div>
+    </a>
+    <div class="tarjeta-wiki" data-tipo="secundario">
+      <div class="tw-foto">
+        <img src="personajes/personajes/j.jpeg" alt="Jenny Humphrey" loading="lazy">
+      </div>
+      <div class="tw-info">
+        <h3>Jenny Humphrey</h3>
+        <p>La nueva reina</p>
+      </div>
+    </div>
+    <div class="tarjeta-wiki" data-tipo="secundario">
+      <div class="tw-foto">
+        <img src="personajes/personajes/r.jpeg" alt="Rufus Humphrey" loading="lazy">
+      </div>
+      <div class="tw-info">
+        <h3>Rufus Humphrey</h3>
+        <p>Músico y padre</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bloque-grupo" id="archibald">
+  <div class="etiqueta-seccion"><span>Familia Archibald</span></div>
+  <div class="grid-personajes">
+    <a href="nate.html" class="tarjeta-wiki" data-tipo="principal">
+      <div class="tw-foto">
+        <img src="personajes/personajes/n.jpeg" alt="Nate Archibald" loading="lazy">
+      </div>
+      <div class="tw-info">
+        <h3>Nate Archibald</h3>
+        <p>El príncipe azul</p>
+      </div>
+    </a>
+    <div class="tarjeta-wiki" data-tipo="secundario">
+      <div class="tw-foto">
+        <img src="personajes/personajes/a.jpeg" alt="Anne Archibald" loading="lazy">
+      </div>
+      <div class="tw-info">
+        <h3>Anne Archibald</h3>
+        <p>Madre de Nate</p>
+      </div>
+    </div>
+    <div class="tarjeta-wiki" data-tipo="secundario">
+      <div class="tw-foto">
+        <img src="personajes/personajes/h.jpeg" alt="Howard Archibald" loading="lazy">
+      </div>
+      <div class="tw-info">
+        <h3>Howard Archibald</h3>
+        <p>El Capitán</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bloque-grupo" id="bass">
+  <div class="etiqueta-seccion"><span>Familia Bass</span></div>
+  <div class="grid-personajes">
+    <a href="chuck.html" class="tarjeta-wiki" data-tipo="principal">
+      <div class="tw-foto">
+        <img src="personajes/personajes/c.jpeg" alt="Chuck Bass" loading="lazy">
+      </div>
+      <div class="tw-info">
+        <h3>Chuck Bass</h3>
+        <p>Excéntrico y poderoso</p>
+      </div>
+    </a>
+    <div class="tarjeta-wiki" data-tipo="secundario">
+      <div class="tw-foto">
+        <img src="personajes/personajes/ba.jpeg" alt="Bart Bass" loading="lazy">
+      </div>
+      <div class="tw-info">
+        <h3>Bart Bass</h3>
+        <p>Magnate implacable</p>
+      </div>
+    </div>
+    <div class="tarjeta-wiki" data-tipo="secundario">
+      <div class="tw-foto">
+        <img src="personajes/personajes/ja.jpeg" alt="Jack Bass" loading="lazy">
+      </div>
+      <div class="tw-info">
+        <h3>Jack Bass</h3>
+        <p>El tío problemático</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bloque-grupo" id="otros">
+  <div class="etiqueta-seccion"><span>Otros Personajes</span></div>
+  <div class="grid-personajes">
+    <a href="georgina.html" class="tarjeta-wiki" data-tipo="principal">
+      <div class="tw-foto">
+        <img src="personajes/personajes/g.jpeg" alt="Georgina Sparks" loading="lazy">
+      </div>
+      <div class="tw-info">
+        <h3>Georgina Sparks</h3>
+        <p>El caos personificado</p>
+      </div>
+    </a>
+    <div class="tarjeta-wiki" data-tipo="secundario">
+      <div class="tw-foto">
+        <img src="personajes/personajes/do.jpeg" alt="Dorota Kishlovsky" loading="lazy">
+      </div>
+      <div class="tw-info">
+        <h3>Dorota Kishlovsky</h3>
+        <p>Ama de llaves de Blair</p>
+      </div>
+    </div>
+    <div class="tarjeta-wiki" data-tipo="secundario">
+      <div class="tw-foto">
+        <img src="personajes/personajes/v.jpeg" alt="Vanessa Abrams" loading="lazy">
+      </div>
+      <div class="tw-info">
+        <h3>Vanessa Abrams</h3>
+        <p>La chica de Brooklyn</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <span class="footer-col-titulo">Ⓘ Sobre este sitio</span>
+      <p>Este es un fan site dedicado al Upper East Side. El contenido fue creado por y para fans de la serie original.</p>
+      <a href="mapadesitio.html" style="display:inline-block; margin-top:10px; font-family:'EB Garamond',serif; font-size:14px; color:#c9b99a; text-decoration:none; letter-spacing:0.5px;">🢒 Mapa de sitio 🢐</a>
+    </div>
+    <div class="footer-divisor"></div>
+    <div class="footer-col footer-col-contacto">
+      <span class="footer-col-titulo">☏ Contacto</span>
+      <p>¿Tienes algo que contarnos?<br>Escríbenos.</p>
+      <p style="margin-top:10px;"><a href="mailto:xoxo@gossipgirl-fan.com">✉ xoxo@gossipgirl-fan.com</a></p>
+      <button onclick="abrirTip()" onmouseover="this.style.color='#8b1a2f'" onmouseout="this.style.color='#c9b99a'" style="background:none; border:none; cursor:pointer; font-family:'EB Garamond',serif; font-size:14px; color:#c9b99a; text-decoration:none; padding:0; letter-spacing:0.5px;">
+        ✎ Envíanos un tip anónimo
+      </button>
+    </div>
+    <div class="footer-divisor"></div>
+    <div class="footer-col">
+      <span class="footer-col-titulo">⍟ Síguenos</span>
+      <div class="footer-redes">
+        <a href="https://x.com/gossip_girlfan3" target="_blank" rel="noopener noreferrer">
+          <img class="red-icono-img" src="iconos/x.jpg" alt="X Twitter" loading="lazy">
+          <span>X (Twitter): @gossip_girlfan3</span>
+        </a>
+        <a href="https://www.instagram.com/uppereastsidefan" target="_blank" rel="noopener noreferrer">
+          <img class="red-icono-img" src="iconos/insta.jpg" alt="Instagram" loading="lazy">
+          <span>Instagram: @UpperEastSideFan</span>
+        </a>
+        <a href="https://www.tiktok.com/@gossip.girlfp" target="_blank" rel="noopener noreferrer">
+          <img class="red-icono-img" src="iconos/tt.png" alt="TikTok" loading="lazy">
+          <span>TikTok: @gossip_girlfp</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Gossip Girl · Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  const filtro = document.getElementById('filtro');
+
+  filtro.addEventListener('change', function () {
+    const valor = this.value;
+    const tarjetas = document.querySelectorAll('.tarjeta-wiki');
+    const bloques = document.querySelectorAll('.bloque-grupo');
+
+    tarjetas.forEach(function (tarjeta) {
+      if (valor === 'todos') {
+        tarjeta.style.display = 'block';
+      } else if (valor === 'principales') {
+        tarjeta.style.display = tarjeta.dataset.tipo === 'principal' ? 'block' : 'none';
+      } else if (valor === 'secundarios') {
+        tarjeta.style.display = tarjeta.dataset.tipo === 'secundario' ? 'block' : 'none';
+      }
+    });
+
+    bloques.forEach(function (bloque) {
+      let conteo = 0;
+      bloque.querySelectorAll('.tarjeta-wiki').forEach(function (t) {
+        if (t.style.display !== 'none') conteo++;
+      });
+      bloque.style.display = conteo === 0 ? 'none' : '';
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    document.body.classList.add('pagina-lista');
+  });
+</script>
+<script>
+  const revelarAlScrollear = () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.etiqueta-seccion, .grid-personajes, .footer-grid').forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  };
+
+  window.addEventListener('load', revelarAlScrollear);
+</script>
+<script>
+  const GG_MENSAJES = [
+    "Spotted: alguien que conoce sus secretos del Upper East Side. Bienvenido al círculo. XOXO, Gossip Girl.",
+    "¿Pensabas que nadie te veía? Siempre estoy mirando, querido. XOXO, Gossip Girl.",
+    "Un fan verdadero. De esos ya no quedan muchos en este lado de Manhattan. XOXO, Gossip Girl.",
+    "Dijeron que los secretos no duran para siempre. Tenían razón. XOXO, Gossip Girl.",
+    "El Upper East Side tiene memoria larga. Y yo, más. XOXO, Gossip Girl."
+  ];
+
+  let secuencia = '';
+  let typingTimer = null;
+
+  function cerrarBlast() {
+    const blast = document.getElementById('gg-blast');
+    blast.classList.remove('visible');
+    secuencia = '';
+  }
+
+  function escribirTexto(texto) {
+    const contenedor = document.getElementById('gg-blast-texto');
+    let i = 0;
+    clearInterval(typingTimer);
+
+    typingTimer = setInterval(() => {
+      const cursor = document.getElementById('gg-blast-cursor');
+      if (!cursor) { clearInterval(typingTimer); return; }
+      if (i < texto.length) {
+        contenedor.insertBefore(document.createTextNode(texto[i]), cursor);
+        i++;
+      } else {
+        clearInterval(typingTimer);
+      }
+    }, 32);
+  }
+
+  function activarBlast() {
+    const mensaje = GG_MENSAJES[Math.floor(Math.random() * GG_MENSAJES.length)];
+    const blast = document.getElementById('gg-blast');
+    const contenedor = document.getElementById('gg-blast-texto');
+
+    contenedor.innerHTML = '<span id="gg-blast-cursor"></span>';
+
+    blast.classList.add('visible');
+    setTimeout(() => escribirTexto(mensaje), 500);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+
+    secuencia += e.key.toUpperCase();
+    if (secuencia.length > 4) secuencia = secuencia.slice(-4);
+
+    if (secuencia === 'XOXO') {
+      secuencia = '';
+      activarBlast();
+    }
+  });
+</script>
+<script>
+  function abrirTip() {
+    document.getElementById('tip-formulario').style.display = 'block';
+    document.getElementById('tip-confirmacion').style.display = 'none';
+    document.getElementById('tip-textarea').value = '';
+    document.getElementById('tip-panel').classList.add('visible');
+  }
+
+  function cerrarTip() {
+    document.getElementById('tip-panel').classList.remove('visible');
+  }
+
+  function enviarTip() {
+    const texto = document.getElementById('tip-textarea').value.trim();
+    if (!texto) {
+      document.getElementById('tip-textarea').focus();
+      return;
+    }
+    document.getElementById('tip-formulario').style.display = 'none';
+    document.getElementById('tip-confirmacion').style.display = 'block';
+  }
+</script>
+</body>
+</html>

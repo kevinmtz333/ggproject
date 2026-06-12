@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="favicon1.PNG">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gossip Girl · Wiki</title>
+  <link rel="preload" as="image" href="ny.jpeg">
+  <link rel="preload" as="image" href="logo2.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=optional" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background-color: #0d0d0d;
+      color: #1a1a1a;
+      max-width: 960px;
+      margin: 0 auto;
+      border: 2px solid #c9b99a;
+      position: relative;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 28px;
+      border-bottom: 2px solid #c9b99a;
+      background-color: #101010;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    nav .logo-img {
+      height: 60px;
+      width: 200px;
+      display: block;
+      object-fit: contain;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      font-family: 'EB Garamond', serif;
+      font-size: 16px;
+      letter-spacing: 1px;
+      color: #ffffff;
+    }
+
+    nav ul li a:hover { color: #8b1a2f; }
+
+    nav ul li a.activo {
+      color: #c9b99a;
+      text-shadow: 0 0 8px rgba(201, 185, 154, 0.8), 0 0 3px rgba(201, 185, 154, 0.9);
+    }
+
+    .hero-curiosos {
+      text-align: center;
+      padding: 60px 20px 50px;
+      background-image: url('ny.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-bottom: 2px solid #c9b99a;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-curiosos::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.42);
+      z-index: 1;
+    }
+
+    .hero-curiosos h1,
+    .hero-curiosos p {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+    }
+
+    .hero-curiosos h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 65px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      text-shadow: 0 0 15px rgba(255, 255, 200, 0.5), 2px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-curiosos p {
+      margin-top: 14px;
+      font-style: italic;
+      font-size: 18px;
+      letter-spacing: 0.5px;
+      color: #e8e0d5;
+      text-shadow: 0 0 12px rgba(235, 224, 213, 0.7), 0 0 5px rgba(232, 224, 213, 0.8), 1px 1px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .breadcrumb {
+      background-color: #f0ece5;
+      border-bottom: 1px solid #c9b99a;
+      padding: 10px 48px;
+      font-size: 13px;
+      color: #888;
+      letter-spacing: 0.5px;
+    }
+
+    .breadcrumb a {
+      color: #8b1a2f;
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    .breadcrumb span { color: #aaa; margin: 0 6px; }
+
+    .etiqueta-seccion {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .etiqueta-seccion::before,
+    .etiqueta-seccion::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: #8b1a2f;
+    }
+
+    .etiqueta-seccion span {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      white-space: nowrap;
+    }
+
+    .voces-tabla td a {
+      color: #444;
+      text-decoration: none;
+      border-bottom: 1px dotted #c9b99a;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .voces-tabla td a:hover {
+      color: #8b1a2f;
+      border-bottom-color: #8b1a2f;
+    }
+
+    .bloque {
+      padding: 44px 48px;
+      border-bottom: 2px solid #c9b99a;
+    }
+
+    .bloque-claro  { background-color: #faf8f5; }
+    .bloque-medio  { background-color: #f0ece5; }
+    .bloque-oscuro { background-color: #1a1a1a; }
+
+    .bloque-oscuro .etiqueta-seccion span        { color: #c9b99a; }
+    .bloque-oscuro .etiqueta-seccion::before,
+    .bloque-oscuro .etiqueta-seccion::after      { background-color: #c9b99a; }
+
+    .edades-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1.5px solid #c9b99a;
+    }
+
+    .edad-item {
+      padding: 24px 20px;
+      border-right: 1.5px solid #c9b99a;
+      text-align: center;
+    }
+
+    .edad-item:last-child { border-right: none; }
+    .edad-item:nth-child(4),
+    .edad-item:nth-child(5),
+    .edad-item:nth-child(6) {
+      border-top: 1.5px solid #c9b99a;
+    }
+
+    .edad-personaje {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+      letter-spacing: 1px;
+    }
+
+    .edad-actor {
+      font-size: 13px;
+      color: #888;
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    .edad-comparacion {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      font-size: 14px;
+    }
+
+    .edad-dato {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .edad-numero {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #8b1a2f;
+      line-height: 1;
+    }
+
+    .edad-label {
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+
+    .edad-vs {
+      font-size: 13px;
+      color: #c9b99a;
+      display: flex;
+      align-items: center;
+    }
+
+    .curiosos-lista {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .curioso-item {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 0;
+      padding: 22px 0;
+      border-bottom: 1px solid #e0d9cf;
+      align-items: start;
+    }
+
+    .curioso-item:last-child { border-bottom: none; }
+
+    .curioso-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #c9b99a;
+      opacity: 0.5;
+      line-height: 1.2;
+      padding-top: 2px;
+    }
+
+    .curioso-texto h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+    }
+
+    .curioso-texto p {
+      font-size: 15.5px;
+      line-height: 28px;
+      color: #555;
+    }
+
+    .curioso-tag {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #8b1a2f;
+      border: 1px solid #8b1a2f;
+      padding: 2px 8px;
+      margin-bottom: 8px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .voces-tabla {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15.5px;
+    }
+
+    .voces-tabla th {
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #8b1a2f;
+      text-align: left;
+      padding: 10px 16px;
+      border-bottom: 1.5px solid #c9b99a;
+    }
+
+    .voces-tabla td {
+      padding: 14px 16px;
+      border-bottom: 1px dotted #ddd5c8;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    .voces-tabla tr:last-child td { border-bottom: none; }
+
+    .voces-tabla td:first-child {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: #1a1a1a;
+      font-size: 15px;
+    }
+
+    .pista-contenedor {
+      background-color: #101010;
+      border: 1px solid #c9b99a;
+      padding: 32px 36px;
+      margin-top: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pista-contenedor::before {
+      content: '✦';
+      position: absolute;
+      top: -10px;
+      right: 24px;
+      font-size: 80px;
+      color: #c9b99a;
+      opacity: 0.05;
+      font-family: 'Playfair Display', serif;
+      pointer-events: none;
+    }
+
+    .pista-intro {
+      font-size: 15px;
+      color: #888;
+      font-style: italic;
+      margin-bottom: 20px;
+      line-height: 26px;
+    }
+
+    .pista-cifrada {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      color: #c9b99a;
+      letter-spacing: 4px;
+      line-height: 34px;
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid #2a2a2a;
+      border-bottom: 1px solid #2a2a2a;
+      margin: 16px 0;
+    }
+
+    .pista-nota {
+      font-size: 13px;
+      color: #555;
+      font-style: italic;
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    .pista-nota em {
+      color: #8b1a2f;
+      font-style: normal;
+    }
+
+    .piloto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 0;
+    }
+
+    .piloto-divisor {
+      background-color: #c9b99a;
+      margin: 0 32px;
+    }
+
+    .piloto-col h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      color: #1a1a1a;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e0d9cf;
+    }
+
+    .piloto-col ul {
+      list-style: none;
+    }
+
+    .piloto-col ul li {
+      font-size: 15px;
+      line-height: 28px;
+      color: #555;
+      padding: 6px 0;
+      border-bottom: 1px dotted #ddd5c8;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .piloto-col ul li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: #8b1a2f;
+      font-size: 16px;
+    }
+
+    .piloto-col ul li:last-child { border-bottom: none; }
+
+    .piloto-spoiler-note {
+      margin-top: 16px;
+      font-size: 14px;
+      color: #888;
+      font-style: italic;
+      line-height: 24px;
+      border-left: 2px solid #8b1a2f;
+      padding-left: 14px;
+    }
+
+    footer {
+      background-color: #101010;
+      border-top: 2px solid #c9b99a;
+      padding: 40px 28px 24px;
+      color: #aaa;
+      font-family: 'EB Garamond', Georgia, serif;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 83px 1fr 1px 1fr;
+      gap: 0;
+      margin-bottom: 32px;
+    }
+
+    .footer-divisor {
+      background-color: #c9b99a;
+      margin: 0 50px;
+    }
+
+    .footer-col-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #c9b99a;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .footer-col p {
+      font-size: 14px;
+      line-height: 26px;
+      color: #888;
+      font-style: italic;
+    }
+
+    .footer-col a[href="mapadesitio.html"] {
+      transition: color 0.2s ease, letter-spacing 0.2s ease;
+    }
+
+    .footer-col a[href="mapadesitio.html"]:hover {
+      color: #8b1a2f !important;
+      letter-spacing: 1.5px;
+    }
+
+    .footer-col-contacto p {
+      font-size: 14px;
+      line-height: 28px;
+      color: #888;
+    }
+
+    .footer-col-contacto a {
+      color: #c9b99a;
+      text-decoration: none;
+    }
+
+    .footer-col-contacto a:hover { color: #8b1a2f; }
+
+    .footer-redes {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-redes a {
+      font-size: 14px;
+      color: #888;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-redes a:hover { color: #c9b99a; }
+
+    .footer-redes .red-icono-img {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #2a2a2a;
+      padding-top: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .footer-bottom p {
+      font-size: 12px;
+      color: #E0E0E0;
+      letter-spacing: 0.5px;
+    }
+
+    #tip-panel {
+      position: fixed;
+      bottom: -340px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(860px, 96vw);
+      background-color: #0d0d0d;
+      border: 1.5px solid #c9b99a;
+      border-bottom: none;
+      padding: 28px 32px 24px;
+      z-index: 9998;
+      box-shadow: 0 -8px 40px rgba(0,0,0,0.7);
+      transition: bottom 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    #tip-panel.visible {
+      bottom: 0;
+    }
+
+    #tip-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    #tip-panel-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: #c9b99a;
+      letter-spacing: 1px;
+    }
+
+    #tip-panel-subtitulo {
+      font-family: 'EB Garamond', serif;
+      font-size: 13.5px;
+      color: #fff;
+      font-style: italic;
+      margin-top: 3px;
+    }
+
+    #tip-panel-cerrar {
+      background: none;
+      border: 1px solid #3a3a3a;
+      color: #fff;
+      font-family: 'EB Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+
+    #tip-panel-cerrar:hover {
+      border-color: #c9b99a;
+      color: #c9b99a;
+    }
+
+    #tip-textarea {
+      width: 100%;
+      height: 90px;
+      background-color: #141414;
+      border: 1px solid #2a2a2a;
+      color: #e8e0d5;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 15.5px;
+      line-height: 26px;
+      padding: 12px 14px;
+      resize: none;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    #tip-textarea::placeholder {
+      color: #444;
+      font-style: italic;
+    }
+
+    #tip-textarea:focus {
+      border-color: #c9b99a;
+    }
+
+    #tip-panel-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    #tip-aviso {
+      font-family: 'EB Garamond', serif;
+      font-size: 12.5px;
+      color: #fff;
+      font-style: italic;
+    }
+
+    #tip-enviar {
+      background: none;
+      border: 1px solid #c9b99a;
+      color: #c9b99a;
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    #tip-enviar:hover {
+      background-color: #c9b99a;
+      color: #0d0d0d;
+    }
+
+    #tip-confirmacion {
+      display: none;
+      text-align: center;
+      padding: 10px 0 4px;
+    }
+
+    #tip-confirmacion p:first-child {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: #c9b99a;
+      margin-bottom: 8px;
+    }
+
+    #tip-confirmacion p:last-child {
+      font-family: 'EB Garamond', serif;
+      font-size: 15px;
+      color: #666;
+      font-style: italic;
+    }
+
+    .reveal {
+      opacity: 0;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(28px);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #gg-blast {
+      position: fixed;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(860px, 96vw);
+      background-color: #0d0d0d;
+      border: 1.5px solid #c9b99a;
+      border-top: none;
+      padding: 18px 28px 16px;
+      z-index: 9999;
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.7);
+      transition: top 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    #gg-blast.visible {
+      top: 0;
+    }
+
+    #gg-blast-logo {
+      height: 38px;
+      width: 120px;
+      object-fit: contain;
+      flex-shrink: 0;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    #gg-blast-cuerpo {
+      flex: 1;
+    }
+
+    #gg-blast-etiqueta {
+      font-family: 'Playfair Display', serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #c9b99a;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    #gg-blast-texto {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 16px;
+      color: #e8e0d5;
+      line-height: 26px;
+      min-height: 26px;
+    }
+
+    #gg-blast-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 15px;
+      background-color: #c9b99a;
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: parpadeo 0.8s step-end infinite;
+    }
+
+    @keyframes parpadeo {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    #gg-blast-cerrar {
+      background: none;
+      border: 1px solid #3a3a3a;
+      color: #666;
+      font-family: 'EB Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    #gg-blast-cerrar:hover {
+      border-color: #c9b99a;
+      color: #c9b99a;
+    }
+  </style>
+</head>
+<body>
+
+<div id="gg-blast" role="alert" aria-live="polite">
+  <img id="gg-blast-logo" src="logo2.png" alt="Gossip Girl">
+  <div id="gg-blast-cuerpo">
+    <span id="gg-blast-etiqueta">Gossip Girl · Exclusiva</span>
+    <div id="gg-blast-texto"><span id="gg-blast-cursor"></span></div>
+  </div>
+  <button id="gg-blast-cerrar" onclick="cerrarBlast()">✕ cerrar</button>
+</div>
+
+<div id="tip-panel">
+  <div id="tip-panel-header">
+    <div>
+      <div id="tip-panel-titulo">Envía un tip anónimo</div>
+      <div id="tip-panel-subtitulo">Gossip Girl está escuchando. Siempre.</div>
+    </div>
+    <button id="tip-panel-cerrar" onclick="cerrarTip()">✕ cerrar</button>
+  </div>
+  <div id="tip-formulario">
+    <textarea id="tip-textarea" placeholder="¿Qué sabes tú que el Upper East Side no debería saber...?"></textarea>
+    <div id="tip-panel-footer">
+      <span id="tip-aviso">﹗Tu identidad nunca será revelada. O casi nunca.</span>
+      <button id="tip-enviar" onclick="enviarTip()">Enviar ➤</button>
+    </div>
+  </div>
+  <div id="tip-confirmacion">
+    <p>Recibido. XOXO.</p>
+    <p>Tu secreto está en buenas manos. Gossip Girl sabrá qué hacer con él.</p>
+  </div>
+</div>
+
+<nav>
+  <div class="logo">
+    <a href="index.html">
+      <img class="logo-img" src="logo2.png" alt="Gossip Girl Logo">
+    </a>
+  </div>
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="personajes.html">Personajes</a></li>
+    <li><a href="quiz.html">Quiz</a></li>
+    <li><a href="wiki.html" class="activo">Wiki</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+  </ul>
+</nav>
+
+<section class="hero-curiosos">
+  <h1>DATOS CURIOSOS</h1>
+  <p>Lo que Gossip Girl nunca te contó… o casi</p>
+</section>
+
+<div class="breadcrumb">
+  <a href="wiki.html">Wiki</a>
+  <span>›</span>
+  Datos Curiosos
+</div>
+
+<section class="bloque bloque-claro" id="edades">
+  <div class="etiqueta-seccion"><span>La edad real de los protagonistas</span></div>
+  <p style="font-size:15.5px; color:#555; line-height:28px; margin-bottom:28px; max-width:720px;">
+    Los personajes de Gossip Girl tenían entre 15 y 17 años al inicio de la serie. Sus actores, no tanto.
+    Aquí la diferencia entre la edad del <em>personaje</em> en el piloto y la edad <em>real</em> del actor al rodar ese episodio.
+  </p>
+  <div class="edades-grid">
+    <div class="edad-item">
+      <div class="edad-personaje">Blair Waldorf</div>
+      <div class="edad-actor">Leighton Meester</div>
+      <div class="edad-comparacion">
+        <div class="edad-dato">
+          <span class="edad-numero">16</span>
+          <span class="edad-label">Personaje</span>
+        </div>
+        <div class="edad-vs">vs</div>
+        <div class="edad-dato">
+          <span class="edad-numero">21</span>
+          <span class="edad-label">Actriz</span>
+        </div>
+      </div>
+    </div>
+    <div class="edad-item">
+      <div class="edad-personaje">Serena van der Woodsen</div>
+      <div class="edad-actor">Blake Lively</div>
+      <div class="edad-comparacion">
+        <div class="edad-dato">
+          <span class="edad-numero">16</span>
+          <span class="edad-label">Personaje</span>
+        </div>
+        <div class="edad-vs">vs</div>
+        <div class="edad-dato">
+          <span class="edad-numero">20</span>
+          <span class="edad-label">Actriz</span>
+        </div>
+      </div>
+    </div>
+    <div class="edad-item">
+      <div class="edad-personaje">Chuck Bass</div>
+      <div class="edad-actor">Ed Westwick</div>
+      <div class="edad-comparacion">
+        <div class="edad-dato">
+          <span class="edad-numero">17</span>
+          <span class="edad-label">Personaje</span>
+        </div>
+        <div class="edad-vs">vs</div>
+        <div class="edad-dato">
+          <span class="edad-numero">20</span>
+          <span class="edad-label">Actor</span>
+        </div>
+      </div>
+    </div>
+    <div class="edad-item reveal">
+      <div class="edad-personaje">Nate Archibald</div>
+      <div class="edad-actor">Chace Crawford</div>
+      <div class="edad-comparacion">
+        <div class="edad-dato">
+          <span class="edad-numero">17</span>
+          <span class="edad-label">Personaje</span>
+        </div>
+        <div class="edad-vs">vs</div>
+        <div class="edad-dato">
+          <span class="edad-numero">22</span>
+          <span class="edad-label">Actor</span>
+        </div>
+      </div>
+    </div>
+    <div class="edad-item reveal">
+      <div class="edad-personaje">Dan Humphrey</div>
+      <div class="edad-actor">Penn Badgley</div>
+      <div class="edad-comparacion">
+        <div class="edad-dato">
+          <span class="edad-numero">16</span>
+          <span class="edad-label">Personaje</span>
+        </div>
+        <div class="edad-vs">vs</div>
+        <div class="edad-dato">
+          <span class="edad-numero">21</span>
+          <span class="edad-label">Actor</span>
+        </div>
+      </div>
+    </div>
+    <div class="edad-item reveal">
+      <div class="edad-personaje">Jenny Humphrey</div>
+      <div class="edad-actor">Taylor Momsen</div>
+      <div class="edad-comparacion">
+        <div class="edad-dato">
+          <span class="edad-numero">15</span>
+          <span class="edad-label">Personaje</span>
+        </div>
+        <div class="edad-vs">vs</div>
+        <div class="edad-dato">
+          <span class="edad-numero">14</span>
+          <span class="edad-label">Actriz</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jen"><p style="font-size:13px; color:#aaa; font-style:italic; margin-top:14px; text-align:right;">
+    * Taylor Momsen es la única actriz que era menor que su personaje al rodar el piloto.
+  </p></div>
+</section>
+
+<section class="bloque bloque-medio" id="voces">
+  <div class="etiqueta-seccion"><span>La voz de Gossip Girl</span></div>
+  <div class="voz-text"><p style="font-size:15.5px; color:#555; line-height:28px; margin-bottom:24px; max-width:720px;">
+    La narradora anónima que abría y cerraba cada episodio fue una de las marcas más reconocibles de la serie.
+    Pero esa voz no era la misma en todos los idiomas.
+  </p></div>
+  <table class="voces-tabla">
+    <thead>
+      <tr>
+        <th>Idioma</th>
+        <th>Actriz de voz</th>
+        <th>Nota</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="reveal">
+        <td>Inglés (original)</td>
+        <td><a href="https://es.wikipedia.org/wiki/Kristen_Bell">Kristen Bell</a></td>
+        <td style="color:#555; font-size:14.5px;">Conocida por <em>Veronica Mars</em> y <em>The Good Place</em>. Su voz nunca aparece en pantalla — solo la narración.</td>
+      </tr>
+      <tr class="reveal">
+        <td>Español Latino</td>
+        <td><a href="https://doblaje.fandom.com/es/wiki/Circe_Luna">Circe Luna</a></td>
+        <td style="color:#555; font-size:14.5px;">Doblaje producido en México. También conocida por doblar personajes en series de Disney y Nickelodeon.</td>
+      </tr>
+      <tr class="reveal">
+        <td>Español España</td>
+        <td><a href="https://doblaje-espana.fandom.com/es/wiki/Marta_Mar%C3%ADn">Marta Marín</a></td>
+        <td style="color:#555; font-size:14.5px;">El doblaje castellano fue producido en Madrid con un tono más neutro y formal que el latino.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="bloque bloque-claro" id="extras">
+  <div class="etiqueta-seccion"><span>Más datos que quizás no sabías</span></div>
+  <div class="curiosos-lista">
+
+    <div class="curioso-item reveal">
+      <div class="curioso-num">01</div>
+      <div class="curioso-texto">
+        <span class="curioso-tag">Producción</span>
+        <h3>El Constance Billard no existe (pero casi)</h3>
+        <p>Las escenas exteriores del colegio se filmaron frente al <em>Dwight School</em> en la Upper West Side de Manhattan. El interior se rodó en un edificio diferente en Brooklyn. Muchos fans hacen peregrinaciones a la locación hasta hoy.</p>
+      </div>
+    </div>
+
+    <div class="curioso-item reveal">
+      <div class="curioso-num">02</div>
+      <div class="curioso-texto">
+        <span class="curioso-tag">Casting</span>
+        <h3>Blair no era el primer papel de Leighton Meester</h3>
+        <p>Antes de Gossip Girl, Leighton Meester apareció en un episodio de <em>House M.D.</em> y en <em>Entourage</em>. También fue considerada para el papel de Serena en las pruebas iniciales de casting — el rol finalmente fue de Blake Lively.</p>
+      </div>
+    </div>
+
+    <div class="curioso-item reveal">
+      <div class="curioso-num">03</div>
+      <div class="curioso-texto">
+        <span class="curioso-tag">Música</span>
+        <h3>La serie lanzó carreras musicales</h3>
+        <p>MGMT, Bloc Party, Vampire Weekend y The Airborne Toxic Event sonaron en momentos clave de la serie antes de ser artistas masivos. La música supervisora Alexandra Patsavas, también responsable de <em>The O.C.</em>, se convirtió en una figura influyente del indie rock gracias a estas colocaciones.</p>
+      </div>
+    </div>
+
+    <div class="curioso-item reveal">
+      <div class="curioso-num">04</div>
+      <div class="curioso-texto">
+        <span class="curioso-tag">Curiosidad</span>
+        <h3>Chuck Bass casi no existía en las novelas</h3>
+        <p>En los libros de Cecily von Ziegesar, Chuck Bass es un personaje secundario con mucho menos protagonismo. Los showrunners expandieron el papel enormemente para la serie — y Ed Westwick lo convirtió en uno de los personajes más icónicos de la televisión de los 2000s.</p>
+      </div>
+    </div>
+
+    <div class="curioso-item reveal">
+      <div class="curioso-num">05</div>
+      <div class="curioso-texto">
+        <span class="curioso-tag">Dato técnico</span>
+        <h3>121 episodios, 6 temporadas, 1 sola narradora</h3>
+        <p>Kristen Bell grabó la narración de todos los episodios de la serie sin aparecer nunca en pantalla. Su voz se convirtió en uno de los elementos más reconocibles del show — y fue confirmada también para el reboot de 2021, aunque solo en el episodio piloto de esa versión.</p>
+      </div>
+    </div>
+
+    <div class="curioso-item reveal">
+      <div class="curioso-num">06</div>
+      <div class="curioso-texto">
+        <span class="curioso-tag">Curiosidad</span>
+        <h3>Las pistas que siempre estuvieron ahí</h3>
+        <p>Desde el capitulo piloto, se revela indirectamente la identidad de Gossip Girl en la escena final, además de diferentes señales obvias a lo largo de la serie.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="bloque bloque-oscuro" id="pista">
+  <div class="etiqueta-seccion"><span>Para los verdaderos fans</span></div>
+  <div class="pista-contenedor">
+    <p class="pista-intro">
+      Gossip Girl siempre dejó pistas en lugares donde nadie miraba. Si llevas suficiente tiempo en este sitio,
+      quizás ya notaste que hay algo más esperando ser descubierto. Todo buen secreto tiene una clave.
+    </p>
+    <div class="pista-cifrada">
+      X · O · X · O
+      <br>
+      <span style="font-size:14px; letter-spacing:6px; color:#888; display:block; margin-top:10px;">
+        cuatro letras · cuatro teclas · en orden
+      </span>
+    </div>
+    <p class="pista-nota">
+      Escríbelas en cualquier página del sitio y Gossip Girl tendrá algo que decirte.<br>
+      <em>Mayúsculas. Sin espacios. Una sola vez.</em>
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <span class="footer-col-titulo">Ⓘ Sobre este sitio</span>
+      <p>Este es un fan site dedicado al Upper East Side. El contenido fue creado por y para fans de la serie original.</p>
+      <a href="mapadesitio.html" style="display:inline-block; margin-top:10px; font-family:'EB Garamond',serif; font-size:14px; color:#c9b99a; text-decoration:none; letter-spacing:0.5px;">🢒 Mapa de sitio 🢐</a>
+    </div>
+    <div class="footer-divisor"></div>
+    <div class="footer-col footer-col-contacto">
+      <span class="footer-col-titulo">☏ Contacto</span>
+      <p>¿Tienes algo que contarnos?<br>Escríbenos.</p>
+      <p style="margin-top:10px;"><a href="mailto:xoxo@gossipgirl-fan.com">✉ xoxo@gossipgirl-fan.com</a></p>
+      <button onclick="abrirTip()" onmouseover="this.style.color='#8b1a2f'" onmouseout="this.style.color='#c9b99a'" style="background:none; border:none; cursor:pointer; font-family:'EB Garamond',serif; font-size:14px; color:#c9b99a; text-decoration:none; padding:0; letter-spacing:0.5px;">
+        ✎ Envíanos un tip anónimo
+      </button>
+    </div>
+    <div class="footer-divisor"></div>
+    <div class="footer-col">
+      <span class="footer-col-titulo">⍟ Síguenos</span>
+      <div class="footer-redes">
+        <a href="https://x.com/gossip_girlfan3" target="_blank" rel="noopener noreferrer">
+          <img class="red-icono-img" src="iconos/x.jpg" alt="X Twitter" loading="lazy">
+          <span>X (Twitter): @gossip_girlfan3</span>
+        </a>
+        <a href="https://www.instagram.com/uppereastsidefan" target="_blank" rel="noopener noreferrer">
+          <img class="red-icono-img" src="iconos/insta.jpg" alt="Instagram" loading="lazy">
+          <span>Instagram: @UpperEastSideFan</span>
+        </a>
+        <a href="https://www.tiktok.com/@gossip.girlfp" target="_blank" rel="noopener noreferrer">
+          <img class="red-icono-img" src="iconos/tt.png" alt="TikTok" loading="lazy">
+          <span>TikTok: @gossip_girlfp</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Gossip Girl · Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  const revelarAlScrollear = () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.reveal, .jen, .etiqueta-seccion, .pista-contenedor, .pista-intro, .pista-cifrada, .pista-nota, .voz-text, .curioso-item, .footer-grid').forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  };
+
+  window.addEventListener('load', revelarAlScrollear);
+</script>
+<script>
+  const GG_MENSAJES = [
+    "Spotted: alguien que conoce sus secretos del Upper East Side. Bienvenido al círculo. XOXO, Gossip Girl.",
+    "¿Pensabas que nadie te veía? Siempre estoy mirando, querido. XOXO, Gossip Girl.",
+    "Un fan verdadero. De esos ya no quedan muchos en este lado de Manhattan. XOXO, Gossip Girl.",
+    "Dijeron que los secretos no duran para siempre. Tenían razón. XOXO, Gossip Girl.",
+    "El Upper East Side tiene memoria larga. Y yo, más. XOXO, Gossip Girl."
+  ];
+
+  let secuencia = '';
+  let typingTimer = null;
+
+  function cerrarBlast() {
+    const blast = document.getElementById('gg-blast');
+    blast.classList.remove('visible');
+    secuencia = '';
+  }
+
+  function escribirTexto(texto) {
+    const contenedor = document.getElementById('gg-blast-texto');
+    let i = 0;
+    clearInterval(typingTimer);
+
+    typingTimer = setInterval(() => {
+      const cursor = document.getElementById('gg-blast-cursor');
+      if (!cursor) { clearInterval(typingTimer); return; }
+      if (i < texto.length) {
+        contenedor.insertBefore(document.createTextNode(texto[i]), cursor);
+        i++;
+      } else {
+        clearInterval(typingTimer);
+      }
+    }, 32);
+  }
+
+  function activarBlast() {
+    const mensaje = GG_MENSAJES[Math.floor(Math.random() * GG_MENSAJES.length)];
+    const blast   = document.getElementById('gg-blast');
+    const contenedor = document.getElementById('gg-blast-texto');
+
+    contenedor.innerHTML = '<span id="gg-blast-cursor"></span>';
+
+    blast.classList.add('visible');
+    setTimeout(() => escribirTexto(mensaje), 500);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) return;
+
+    secuencia += e.key.toUpperCase();
+    if (secuencia.length > 4) secuencia = secuencia.slice(-4);
+
+    if (secuencia === 'XOXO') {
+      secuencia = '';
+      activarBlast();
+    }
+  });
+</script>
+<script>
+  function abrirTip() {
+    document.getElementById('tip-formulario').style.display = 'block';
+    document.getElementById('tip-confirmacion').style.display = 'none';
+    document.getElementById('tip-textarea').value = '';
+    document.getElementById('tip-panel').classList.add('visible');
+  }
+
+  function cerrarTip() {
+    document.getElementById('tip-panel').classList.remove('visible');
+  }
+
+  function enviarTip() {
+    const texto = document.getElementById('tip-textarea').value.trim();
+    if (!texto) {
+      document.getElementById('tip-textarea').focus();
+      return;
+    }
+    document.getElementById('tip-formulario').style.display = 'none';
+    document.getElementById('tip-confirmacion').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>

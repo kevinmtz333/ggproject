@@ -1,0 +1,2110 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="preload" as="image" href="favicon1.png">
+  <link rel="icon" type="image/jpeg" href="favicon1.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gossip Girl · Quiz</title>
+  <link rel="preload" as="image" href="ny.jpeg">
+  <link rel="preload" as="image" href="logo2.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=optional" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background-color: #0d0d0d;
+      color: #1a1a1a;
+      max-width: 960px;
+      margin: 0 auto;
+      border: 2px solid #c9b99a;
+      position: relative;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 28px;
+      border-bottom: 2px solid #c9b99a;
+      background-color: #101010;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav .logo-img {
+      height: 60px;
+      width: 200px;
+      display: block;
+      object-fit: contain;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      font-family: 'EB Garamond', serif;
+      font-size: 16px;
+      letter-spacing: 1px;
+      color: #ffffff;
+    }
+
+    nav ul li a:hover {
+      color: #8b1a2f;
+    }
+
+    nav ul li a.activo {
+      color: #c9b99a;
+      text-shadow: 0 0 8px rgba(201, 185, 154, 0.8), 0 0 3px rgba(201, 185, 154, 0.9);
+    }
+
+    .hero-quiz {
+      text-align: center;
+      padding: 60px 20px 50px;
+      background-image: url('ny.jpeg');
+      background-size: cover;
+      background-position: center;
+      border-bottom: 2px solid #c9b99a;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-quiz::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 1;
+    }
+
+    .hero-quiz h1,
+    .hero-quiz p {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-quiz h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 65px;
+      font-weight: 700;
+      letter-spacing: 6px;
+      text-shadow: 0 0 15px rgba(255, 255, 200, 0.5), 2px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-quiz .hero-sub {
+      margin-top: 14px;
+      font-style: italic;
+      font-size: 18px;
+      letter-spacing: 0.5px;
+      color: #e8e0d5;
+      text-shadow: 0 0 12px rgba(235, 224, 213, 0.7), 0 0 5px rgba(232, 224, 213, 0.8), 1px 1px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-quiz .hero-nota {
+      position: relative;
+      z-index: 2;
+      margin-top: 22px;
+      font-size: 13.5px;
+      color: #c9b99a;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-family: 'Playfair Display', serif;
+    }
+
+    #quiz-app {
+      background-color: #faf8f5;
+      min-height: 480px;
+    }
+
+    .pantalla-inicio {
+      padding: 60px 80px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .carousel-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      justify-content: center;
+    }
+
+    .carousel-signo {
+      font-family: 'Playfair Display', serif;
+      font-size: 110px;
+      color: #c9b99a;
+      line-height: 1;
+      opacity: 0.85;
+      user-select: none;
+      margin-top: -8px;
+    }
+
+    .carousel-frame {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 2.5px solid #c9b99a;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(139, 26, 47, 0.18);
+      background: #1a1a1a;
+    }
+
+    .carousel-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .carousel-slide.activa {
+      opacity: 1;
+    }
+
+    .inicio-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: #1a1a1a;
+      line-height: 1.4;
+      max-width: 540px;
+    }
+
+    .inicio-desc {
+      font-size: 19px;
+      color: #555;
+      line-height: 28px;
+      max-width: 500px;
+      font-style: italic;
+    }
+
+    .btn-primario {
+      display: inline-block;
+      background-color: #8b1a2f;
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 14px 40px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+      text-decoration: none;
+    }
+
+    .btn-primario:hover {
+      background-color: #6e1325;
+      transform: translateY(-1px);
+    }
+
+    .inicio-personajes-preview {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .preview-foto {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 2px solid #c9b99a;
+      overflow: hidden;
+      opacity: 0.85;
+    }
+
+    .preview-foto img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .barra-progreso-wrap {
+      background-color: #f0ece5;
+      border-bottom: 1px solid #e8e0d5;
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .progreso-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #8b1a2f;
+      white-space: nowrap;
+      min-width: 90px;
+    }
+
+    .barra-track {
+      flex: 1;
+      height: 4px;
+      background-color: #e0d8cc;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .barra-fill {
+      height: 100%;
+      background-color: #8b1a2f;
+      border-radius: 2px;
+      transition: width 0.5s ease;
+      width: 0%;
+    }
+
+    .progreso-num {
+      font-family: 'EB Garamond', serif;
+      font-size: 14px;
+      color: #999;
+      white-space: nowrap;
+      min-width: 48px;
+      text-align: right;
+    }
+
+    .pantalla-pregunta {
+      padding: 44px 60px 50px;
+      animation: fadeInUp 0.4s ease both;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .etiqueta-pregunta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .etiqueta-pregunta::before,
+    .etiqueta-pregunta::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: #8b1a2f;
+    }
+
+    .etiqueta-pregunta span {
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      white-space: nowrap;
+    }
+
+    .texto-pregunta {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: #1a1a1a;
+      line-height: 1.5;
+      text-align: center;
+      margin-bottom: 36px;
+      font-style: italic;
+    }
+
+    .opciones-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .opcion-btn {
+      background-color: #fff;
+      border: 1.5px solid #c9b99a;
+      padding: 18px 20px;
+      text-align: left;
+      cursor: pointer;
+      font-family: 'EB Garamond', serif;
+      font-size: 16px;
+      color: #333;
+      line-height: 24px;
+      transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
+      border-radius: 2px;
+      position: relative;
+    }
+
+    .opcion-btn::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border: 1.5px solid #c9b99a;
+      border-radius: 50%;
+      margin-right: 12px;
+      vertical-align: middle;
+      flex-shrink: 0;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .opcion-btn:hover {
+      border-color: #8b1a2f;
+      background-color: #fdf5f7;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(139, 26, 47, 0.08);
+    }
+
+    .opcion-btn:hover::before {
+      border-color: #8b1a2f;
+      background-color: #8b1a2f;
+    }
+
+    .opcion-btn.seleccionada {
+      border-color: #8b1a2f;
+      background-color: #fdf5f7;
+    }
+
+    .opcion-btn.seleccionada::before {
+      border-color: #8b1a2f;
+      background-color: #8b1a2f;
+    }
+
+    .pantalla-resultado {
+      animation: fadeInUp 0.5s ease both;
+    }
+
+    .resultado-header {
+      background-color: #1a1a1a;
+      padding: 50px 60px;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 40px;
+      align-items: center;
+      border-bottom: 2px solid #c9b99a;
+    }
+
+    .resultado-foto-wrap {
+      position: relative;
+    }
+
+    .resultado-foto {
+      width: 180px;
+      aspect-ratio: 2 / 3;
+      border: 2px solid #c9b99a;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+
+    .resultado-foto img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    .resultado-badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background-color: #8b1a2f;
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border: 1px solid #c9b99a;
+    }
+
+    .resultado-texto h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #c9b99a;
+      margin-bottom: 10px;
+    }
+
+    .resultado-nombre {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .resultado-subtitulo {
+      font-size: 15px;
+      color: #c9b99a;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .resultado-quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 17px;
+      color: #e0d8cc;
+      line-height: 1.6;
+      border-left: 2px solid #8b1a2f;
+      padding-left: 18px;
+      margin-bottom: 0;
+    }
+
+    .resultado-cuerpo {
+      background-color: #faf8f5;
+      padding: 40px 60px;
+      border-bottom: 2px solid #c9b99a;
+    }
+
+    .resultado-cuerpo .etiqueta-seccion {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .resultado-cuerpo .etiqueta-seccion::before,
+    .resultado-cuerpo .etiqueta-seccion::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: #8b1a2f;
+    }
+
+    .resultado-cuerpo .etiqueta-seccion span {
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #1a1a1a;
+      white-space: nowrap;
+    }
+
+    .resultado-desc {
+      font-size: 17px;
+      color: #333;
+      line-height: 30px;
+      text-align: justify;
+      margin-bottom: 32px;
+    }
+
+    .rasgos-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .rasgo-tag {
+      background-color: #f0ece5;
+      border: 1px solid #c9b99a;
+      padding: 6px 14px;
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #8b1a2f;
+      border-radius: 2px;
+    }
+
+    .resultado-acciones {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-secundario {
+      display: inline-block;
+      background-color: transparent;
+      color: #8b1a2f;
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 13px 28px;
+      border: 1.5px solid #8b1a2f;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-secundario:hover {
+      background-color: #8b1a2f;
+      color: #fff;
+    }
+
+    footer {
+      background-color: #101010;
+      border-top: 2px solid #c9b99a;
+      padding: 40px 28px 24px;
+      color: #aaa;
+      font-family: 'EB Garamond', Georgia, serif;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 83px 1fr 1px 1fr;
+      gap: 0;
+      margin-bottom: 32px;
+    }
+
+    .footer-divisor {
+      background-color: #c9b99a;
+      margin: 0 50px;
+    }
+
+    .footer-col-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #c9b99a;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .footer-col p {
+      font-size: 14px;
+      line-height: 26px;
+      color: #888;
+      font-style: italic;
+    }
+
+    .footer-col a[href="mapadesitio.html"] {
+      transition: color 0.2s ease, letter-spacing 0.2s ease;
+    }
+
+    .footer-col a[href="mapadesitio.html"]:hover {
+      color: #8b1a2f !important;
+      letter-spacing: 1.5px;
+    }
+
+    .footer-col-contacto p {
+      font-size: 14px;
+      line-height: 28px;
+      color: #888;
+    }
+
+    .footer-col-contacto a {
+      color: #c9b99a;
+      text-decoration: none;
+    }
+
+    .footer-col-contacto a:hover {
+      color: #8b1a2f;
+    }
+
+    .footer-redes {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-redes a {
+      font-size: 14px;
+      color: #888;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-redes a:hover {
+      color: #c9b99a;
+    }
+
+    .footer-redes .red-icono-img {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #2a2a2a;
+      padding-top: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .footer-bottom p {
+      font-size: 12px;
+      color: #E0E0E0;
+      letter-spacing: 0.5px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(28px);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #tip-panel {
+      position: fixed;
+      bottom: -340px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(860px, 96vw);
+      background-color: #0d0d0d;
+      border: 1.5px solid #c9b99a;
+      border-bottom: none;
+      padding: 28px 32px 24px;
+      z-index: 9998;
+      box-shadow: 0 -8px 40px rgba(0,0,0,0.7);
+      transition: bottom 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    #tip-panel.visible {
+      bottom: 0;
+    }
+
+    #tip-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    #tip-panel-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: #c9b99a;
+      letter-spacing: 1px;
+    }
+
+    #tip-panel-subtitulo {
+      font-family: 'EB Garamond', serif;
+      font-size: 13.5px;
+      color: #fff;
+      font-style: italic;
+      margin-top: 3px;
+    }
+
+    #tip-panel-cerrar {
+      background: none;
+      border: 1px solid #3a3a3a;
+      color: #fff;
+      font-family: 'EB Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+
+    #tip-panel-cerrar:hover {
+      border-color: #c9b99a;
+      color: #c9b99a;
+    }
+
+    #tip-textarea {
+      width: 100%;
+      height: 90px;
+      background-color: #141414;
+      border: 1px solid #2a2a2a;
+      color: #e8e0d5;
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 15.5px;
+      line-height: 26px;
+      padding: 12px 14px;
+      resize: none;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    #tip-textarea::placeholder {
+      color: #444;
+      font-style: italic;
+    }
+
+    #tip-textarea:focus {
+      border-color: #c9b99a;
+    }
+
+    #tip-panel-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    #tip-aviso {
+      font-family: 'EB Garamond', serif;
+      font-size: 12.5px;
+      color: #fff;
+      font-style: italic;
+    }
+
+    #tip-enviar {
+      background: none;
+      border: 1px solid #c9b99a;
+      color: #c9b99a;
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 8px 20px;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    #tip-enviar:hover {
+      background-color: #c9b99a;
+      color: #0d0d0d;
+    }
+
+    #tip-confirmacion {
+      display: none;
+      text-align: center;
+      padding: 10px 0 4px;
+    }
+
+    #tip-confirmacion p:first-child {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: #c9b99a;
+      margin-bottom: 8px;
+    }
+
+    #tip-confirmacion p:last-child {
+      font-family: 'EB Garamond', serif;
+      font-size: 15px;
+      color: #666;
+      font-style: italic;
+    }
+
+    #gg-blast {
+      position: fixed;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(860px, 96vw);
+      background-color: #0d0d0d;
+      border: 1.5px solid #c9b99a;
+      border-top: none;
+      padding: 18px 28px 16px;
+      z-index: 9999;
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.7);
+      transition: top 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    #gg-blast.visible {
+      top: 0;
+    }
+
+    #gg-blast-logo {
+      height: 38px;
+      width: 120px;
+      object-fit: contain;
+      flex-shrink: 0;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    #gg-blast-cuerpo {
+      flex: 1;
+    }
+
+    #gg-blast-etiqueta {
+      font-family: 'Playfair Display', serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #c9b99a;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    #gg-blast-texto {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 16px;
+      color: #e8e0d5;
+      line-height: 26px;
+      min-height: 26px;
+    }
+
+    #gg-blast-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 15px;
+      background-color: #c9b99a;
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: parpadeo 0.8s step-end infinite;
+    }
+
+    @keyframes parpadeo {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    #gg-blast-cerrar {
+      background: none;
+      border: 1px solid #3a3a3a;
+      color: #666;
+      font-family: 'EB Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      cursor: pointer;
+      flex-shrink: 0;
+      margin-top: 2px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    #gg-blast-cerrar:hover {
+      border-color: #c9b99a;
+      color: #c9b99a;
+    }
+
+    .quizzes-wrapper {
+      background-color: #faf8f5;
+      border-bottom: 2px solid #c9b99a;
+    }
+
+    .quizzes-inicio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 0;
+      min-height: 480px;
+    }
+
+    .quiz-inicio-col {
+      padding: 48px 44px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 22px;
+    }
+
+    .quiz-inicio-col.invertido {
+      flex-direction: column-reverse;
+      justify-content: center;
+    }
+
+    .quizzes-divisor {
+      background-color: #c9b99a;
+    }
+
+    .quiz-col-etiqueta {
+      font-family: 'Playfair Display', serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #8b1a2f;
+      margin-bottom: -10px;
+    }
+
+    .quiz-col-etiquetaa {
+      font-family: 'Playfair Display', serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #8b1a2f;
+      margin-top: -17px;
+      margin-bottom: 30px;
+    }
+
+    .quiz-col-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: #1a1a1a;
+      line-height: 1.4;
+      max-width: 320px;
+    }
+
+    .quiz-col-desc {
+      font-size: 16px;
+      color: #555;
+      line-height: 26px;
+      max-width: 300px;
+      font-style: italic;
+    }
+
+    #quiz2-app {
+      background-color: #faf8f5;
+      border-top: 1px solid #e0d9cf;
+    }
+
+    .q2-barra-wrap {
+      background-color: #f0ece5;
+      border-bottom: 1px solid #e8e0d5;
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .q2-progreso-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #8b1a2f;
+      white-space: nowrap;
+      min-width: 90px;
+    }
+
+    .q2-barra-track {
+      flex: 1;
+      height: 4px;
+      background-color: #e0d8cc;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .q2-barra-fill {
+      height: 100%;
+      background-color: #8b1a2f;
+      border-radius: 2px;
+      transition: width 0.5s ease;
+      width: 0%;
+    }
+
+    .q2-progreso-num {
+      font-family: 'EB Garamond', serif;
+      font-size: 14px;
+      color: #999;
+      white-space: nowrap;
+      min-width: 48px;
+      text-align: right;
+    }
+
+    .q2-pantalla {
+      padding: 36px 60px 44px;
+      animation: fadeInUp 0.4s ease both;
+    }
+
+    .q2-pista-label {
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #8b1a2f;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    .q2-pista-texto {
+      font-family: 'Playfair Display', serif;
+      font-size: 21px;
+      color: #1a1a1a;
+      line-height: 1.5;
+      text-align: center;
+      margin-bottom: 32px;
+      font-style: italic;
+      border-bottom: 1px solid #e0d9cf;
+      padding-bottom: 24px;
+    }
+
+    .q2-opciones {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .q2-opcion {
+      background-color: #fff;
+      border: 1.5px solid #c9b99a;
+      padding: 14px 16px;
+      cursor: pointer;
+      font-family: 'EB Garamond', serif;
+      font-size: 16px;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: border-color 0.2s, background-color 0.2s, transform 0.15s;
+      border-radius: 2px;
+      text-align: left;
+    }
+
+    .q2-opcion-foto {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1.5px solid #c9b99a;
+    }
+
+    .q2-opcion-foto img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    .q2-opcion-nombre {
+      font-family: 'EB Garamond', serif;
+      font-size: 16px;
+      color: #333;
+      line-height: 1.3;
+    }
+
+    .q2-opcion:hover:not(:disabled) {
+      border-color: #c9b99a;
+      background-color: #faf6f0;
+      transform: translateY(-2px);
+    }
+
+    .q2-opcion.correcta {
+      border-color: #2d6a4f;
+      background-color: #f0faf5;
+    }
+
+    .q2-opcion.correcta .q2-opcion-nombre {
+      color: #2d6a4f;
+      font-weight: 600;
+    }
+
+    .q2-opcion.incorrecta {
+      border-color: #8b1a2f;
+      background-color: #fdf5f7;
+    }
+
+    .q2-opcion.incorrecta .q2-opcion-nombre {
+      color: #8b1a2f;
+    }
+
+    .q2-opcion.revelar-correcta {
+      border-color: #2d6a4f;
+      background-color: #f0faf5;
+      opacity: 0.7;
+    }
+
+    .q2-opcion:disabled {
+      cursor: default;
+      transform: none;
+    }
+
+    .q2-resultado {
+      animation: fadeInUp 0.5s ease both;
+    }
+
+    .q2-resultado-header {
+      background-color: #1a1a1a;
+      padding: 44px 60px;
+      text-align: center;
+      border-bottom: 2px solid #c9b99a;
+    }
+
+    .q2-puntaje-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 80px;
+      font-weight: 700;
+      color: #c9b99a;
+      line-height: 1;
+    }
+
+    .q2-puntaje-de {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: #666;
+      margin-top: 6px;
+    }
+
+    .q2-resultado-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: #fff;
+      margin-top: 18px;
+      margin-bottom: 8px;
+    }
+
+    .q2-resultado-sub {
+      font-family: 'EB Garamond', serif;
+      font-size: 16px;
+      color: #888;
+      font-style: italic;
+    }
+
+    .q2-resultado-cuerpo {
+      background-color: #faf8f5;
+      padding: 36px 60px;
+      border-bottom: 2px solid #c9b99a;
+    }
+
+    .q2-repaso-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #8b1a2f;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .q2-repaso-titulo::before,
+    .q2-repaso-titulo::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: #8b1a2f;
+    }
+
+    .q2-repaso-lista {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 32px;
+    }
+
+    .q2-repaso-item {
+      display: grid;
+      grid-template-columns: 40px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px dotted #ddd5c8;
+      font-size: 15px;
+    }
+
+    .q2-repaso-item:last-child {
+      border-bottom: none;
+    }
+
+    .q2-repaso-foto {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1.5px solid #c9b99a;
+    }
+
+    .q2-repaso-foto img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .q2-repaso-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .q2-repaso-nombre {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      color: #1a1a1a;
+    }
+
+    .q2-repaso-pista {
+      font-size: 13px;
+      color: #888;
+      font-style: italic;
+    }
+
+    .q2-repaso-estado {
+      font-size: 18px;
+    }
+
+    .q2-acciones {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .quiz-salir-bar {
+      background-color: #faf8f5;
+      padding: 20px 40px 0px 40px;
+      display: flex;
+      align-items: center;
+    }
+
+    .quiz-salir-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'EB Garamond', serif;
+      font-size: 13px;
+      color: #888;
+      letter-spacing: 0.5px;
+      padding: 0;
+      transition: color 0.2s;
+    }
+
+    .quiz-salir-btn:hover {
+      color: #8b1a2f;
+    }
+
+    .quiz-confirm-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 9997;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .quiz-confirm-box {
+      background: #faf8f5;
+      border: 1.5px solid #c9b99a;
+      padding: 36px 40px 28px;
+      max-width: 360px;
+      width: 90%;
+      text-align: center;
+    }
+
+    .quiz-confirm-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+
+    .quiz-confirm-sub {
+      font-size: 13px;
+      color: #999;
+      font-style: italic;
+      margin-bottom: 28px;
+    }
+
+    .quiz-confirm-botones {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .quiz-confirm-botones .btn-secundario:hover {
+      background-color: #fff;
+      color: #0d0d0d;
+    }
+
+.carousel-signo {
+  background: linear-gradient(180deg, #c9b99a, #8b1a2f);
+  background-size: 100% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: gradienteSigno 3s ease-in-out infinite alternate;
+  line-height: 1.2;
+  padding-bottom: 8px;
+  margin-bottom: -8px;
+  display: inline-block;
+}
+
+@keyframes gradienteSigno {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 0% 100%;
+  }
+}
+  </style>
+</head>
+<body>
+
+<div id="gg-blast" role="alert" aria-live="polite">
+  <img id="gg-blast-logo" src="logo2.png" alt="Gossip Girl">
+  <div id="gg-blast-cuerpo">
+    <span id="gg-blast-etiqueta">Gossip Girl · Exclusiva</span>
+    <div id="gg-blast-texto"><span id="gg-blast-cursor"></span></div>
+  </div>
+  <button id="gg-blast-cerrar" onclick="cerrarBlast()">✕ cerrar</button>
+</div>
+
+<div id="tip-panel">
+  <div id="tip-panel-header">
+    <div>
+      <div id="tip-panel-titulo">Envía un tip anónimo</div>
+      <div id="tip-panel-subtitulo">Gossip Girl está escuchando. Siempre.</div>
+    </div>
+    <button id="tip-panel-cerrar" onclick="cerrarTip()">✕ cerrar</button>
+  </div>
+  <div id="tip-formulario">
+    <textarea id="tip-textarea" placeholder="¿Qué sabes tú que el Upper East Side no debería saber...?"></textarea>
+    <div id="tip-panel-footer">
+      <span id="tip-aviso">﹗Tu identidad nunca será revelada. O casi nunca.</span>
+      <button id="tip-enviar" onclick="enviarTip()">Enviar ➤</button>
+    </div>
+  </div>
+  <div id="tip-confirmacion">
+    <p>Recibido. XOXO.</p>
+    <p>Tu secreto está en buenas manos. Gossip Girl sabrá qué hacer con él.</p>
+  </div>
+</div>
+
+<nav>
+  <div class="logo">
+    <a href="index.html">
+      <img class="logo-img" src="logo2.png" alt="Gossip Girl Logo">
+    </a>
+  </div>
+  <ul>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="personajes.html">Personajes</a></li>
+    <li><a href="quiz.html" class="activo">Quiz</a></li>
+    <li><a href="wiki.html">Wiki</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
+  </ul>
+</nav>
+
+<header class="hero-quiz">
+  <h1>QUIZ</h1>
+  <p class="hero-sub">Gossip Girl siempre supo todo. ¿Y tú?</p>
+</header>
+
+<div class="quizzes-wrapper">
+  <div id="quizzes-inicio">
+    <div class="quizzes-inicio-grid">
+      <div class="quiz-inicio-col" id="quiz1-inicio-col">
+        <span class="quiz-col-etiqueta">Quiz I</span>
+        <div class="carousel-wrapper">
+          <span class="carousel-signo">¿</span>
+          <div class="carousel-frame" id="carousel-frame">
+            <img class="carousel-slide activa" src="personajes/personajes/b.jpeg" alt="Blair">
+            <img class="carousel-slide" src="personajes/personajes/s.jpeg" alt="Serena">
+            <img class="carousel-slide" src="personajes/personajes/c.jpeg" alt="Chuck">
+            <img class="carousel-slide" src="personajes/personajes/d.jpeg" alt="Dan">
+            <img class="carousel-slide" src="personajes/inicio/nate.jpeg" alt="Nate">
+            <img class="carousel-slide" src="personajes/inicio/georgina.jpeg" alt="Georgina">
+          </div>
+          <span class="carousel-signo">?</span>
+        </div>
+        <h2 class="quiz-col-titulo">Gossip Girl siempre supo quién eras.<br><span class="ahora">Ahora es tu turno.</span></h2>
+        <p class="quiz-col-desc"><span class="ahora">Diez preguntas. Sin respuestas correctas ni incorrectas. Solo la verdad sobre quién eres en el Upper East Side.</span></p>
+        <button class="btn-primario" onclick="comenzarQuiz()">↬ Comenzar ↫</button>
+      </div>
+      <div class="quizzes-divisor"></div>
+      <div class="quiz-inicio-col invertido" id="quiz2-inicio-col">
+        <span class="ahora">
+          <div class="carousel-wrapper">
+            <span class="carousel-signo">¿</span>
+            <div class="carousel-frame" id="carousel2-frame">
+              <img class="carousel-slide activa" src="personajes/inicio/chuck.jpeg" alt="Chuck">
+              <img class="carousel-slide" src="personajes/personajes/g.jpeg" alt="Georgina">
+              <img class="carousel-slide" src="personajes/inicio/blair.jpeg" alt="Blair">
+              <img class="carousel-slide" src="personajes/personajes/r.jpeg" alt="Rufus">
+              <img class="carousel-slide" src="personajes/personajes/l.jpeg" alt="Lily">
+              <img class="carousel-slide" src="personajes/personajes/s.jpeg" alt="Serena">
+              <img class="carousel-slide" src="personajes/personajes/j.jpeg" alt="Jenny">
+              <img class="carousel-slide" src="personajes/personajes/v.jpeg" alt="Vanessa">
+              <img class="carousel-slide" src="personajes/personajes/n.jpeg" alt="Nate">
+              <img class="carousel-slide" src="personajes/personajes/d.jpeg" alt="Dan">
+            </div>
+            <span class="carousel-signo">?</span>
+          </div>
+        </span>
+        <h2 class="quiz-col-titulo">¿Conoces el Upper East Side de <span class="ahora">verdad?</span></h2>
+        <p class="quiz-col-desc">Diez pistas. Diez personajes aleatorios. ¿Cuántos reconoces?</p>
+        <button class="btn-primario" onclick="comenzarQuiz2()">↫ Comenzar ↬</button>
+        <span class="quiz-col-etiquetaa">Quiz II</span>
+      </div>
+    </div>
+  </div>
+  <div id="quiz-app" style="display:none;"></div>
+  <div id="quiz2-app" style="display:none;"></div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <span class="footer-col-titulo">Ⓘ Sobre este sitio</span>
+      <p>Este es un fan site dedicado al Upper East Side. El contenido fue creado por y para fans de la serie original.</p>
+      <a href="mapadesitio.html" style="display:inline-block; margin-top:10px; font-family:'EB Garamond',serif; font-size:14px; color:#c9b99a; text-decoration:none; letter-spacing:0.5px;">🢒 Mapa de sitio 🢐</a>
+    </div>
+    <div class="footer-divisor"></div>
+    <div class="footer-col footer-col-contacto">
+      <span class="footer-col-titulo">☏ Contacto</span>
+      <p>¿Tienes algo que contarnos?<br>Escríbenos.</p>
+      <p style="margin-top:10px;"><a href="mailto:xoxo@gossipgirl-fan.com">✉ xoxo@gossipgirl-fan.com</a></p>
+      <button onclick="abrirTip()" onmouseover="this.style.color='#8b1a2f'" onmouseout="this.style.color='#c9b99a'" style="background:none; border:none; cursor:pointer; font-family:'EB Garamond',serif; font-size:14px; color:#c9b99a; text-decoration:none; padding:0; letter-spacing:0.5px;">
+        ✎ Envíanos un tip anónimo
+      </button>
+    </div>
+    <div class="footer-divisor"></div>
+    <div class="footer-col">
+      <span class="footer-col-titulo">⍟ Síguenos</span>
+      <div class="footer-redes">
+        <a href="https://x.com/gossip_girlfan3" target="_blank" rel="noopener noreferrer">
+          <img class="red-icono-img" src="iconos/x.jpg" alt="X Twitter" loading="lazy">
+          <span>X (Twitter): @gossip_girlfan3</span>
+        </a>
+        <a href="https://www.instagram.com/uppereastsidefan" target="_blank" rel="noopener noreferrer">
+          <img class="red-icono-img" src="iconos/insta.jpg" alt="Instagram" loading="lazy">
+          <span>Instagram: @UpperEastSideFan</span>
+        </a>
+        <a href="https://www.tiktok.com/@gossip.girlfp" target="_blank" rel="noopener noreferrer">
+          <img class="red-icono-img" src="iconos/tt.png" alt="TikTok" loading="lazy">
+          <span>TikTok: @gossip_girlfp</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Gossip Girl · Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script>
+const TODOS_PERSONAJES = [
+  { nombre: "Blair Waldorf",           foto: "personajes/personajes/b.jpeg" },
+  { nombre: "Serena van der Woodsen",  foto: "personajes/personajes/s.jpeg" },
+  { nombre: "Chuck Bass",              foto: "personajes/personajes/c.jpeg" },
+  { nombre: "Dan Humphrey",            foto: "personajes/personajes/d.jpeg" },
+  { nombre: "Nate Archibald",          foto: "personajes/personajes/n.jpeg" },
+  { nombre: "Georgina Sparks",         foto: "personajes/personajes/g.jpeg" },
+  { nombre: "Jenny Humphrey",          foto: "personajes/personajes/j.jpeg" },
+  { nombre: "Vanessa Abrams",          foto: "personajes/personajes/v.jpeg" },
+  { nombre: "Lily van der Woodsen",    foto: "personajes/personajes/l.jpeg" },
+  { nombre: "Rufus Humphrey",          foto: "personajes/personajes/r.jpeg" },
+  { nombre: "Eleanor Waldorf",         foto: "personajes/personajes/el.jpeg" },
+  { nombre: "Cyrus Rose",              foto: "personajes/personajes/cy.jpeg" },
+  { nombre: "Harold Waldorf",          foto: "personajes/personajes/ha.jpeg" },
+  { nombre: "Eric van der Woodsen",    foto: "personajes/personajes/e.jpeg" },
+  { nombre: "William van der Woodsen", foto: "personajes/personajes/w.jpeg" },
+  { nombre: "Anne Archibald",          foto: "personajes/personajes/a.jpeg" },
+  { nombre: "Howard Archibald",        foto: "personajes/personajes/h.jpeg" },
+  { nombre: "Bart Bass",               foto: "personajes/personajes/ba.jpeg" },
+  { nombre: "Jack Bass",               foto: "personajes/personajes/ja.jpeg" },
+  { nombre: "Dorota Kishlovsky",       foto: "personajes/personajes/do.jpeg" },
+];
+
+const BANCO_PISTAS = [
+  { personaje: "Blair Waldorf",           pista: "Reina indiscutible de Constance Billard y mejor enemiga de su mejor amiga." },
+  { personaje: "Blair Waldorf",           pista: "Su mayor amor siempre fue el poder — aunque hubo alguien que estuvo cerca de igualarlo." },
+  { personaje: "Blair Waldorf",           pista: "Conocida por sus diademas, sus maquinaciones y su devoción a Audrey Hepburn." },
+  { personaje: "Serena van der Woodsen",  pista: "Regresó a Manhattan después de un año de ausencia misteriosa y lo cambió todo." },
+  { personaje: "Serena van der Woodsen",  pista: "Rubia, carismática e incapaz de pasar desapercibida sin importar lo que haga." },
+  { personaje: "Serena van der Woodsen",  pista: "Su llegada al episodio piloto es el detonante de toda la serie." },
+  { personaje: "Chuck Bass",              pista: "Dueño del Empire Hotel y maestro de los juegos de poder en el Upper East Side." },
+  { personaje: "Chuck Bass",              pista: "Excéntrico, impredecible y con un corazón que muy pocos tuvieron el privilegio de ver." },
+  { personaje: "Chuck Bass",              pista: "Sus bufandas son tan icónicas como sus secretos." },
+  { personaje: "Dan Humphrey",            pista: "El chico de Brooklyn que nunca debió encajar — y que al final resultó ser el más peligroso de todos." },
+  { personaje: "Dan Humphrey",            pista: "Escritor, observador y con acceso a información que nadie más debería tener." },
+  { personaje: "Dan Humphrey",            pista: "Su apodo era Lonely Boy. Él mismo lo eligió." },
+  { personaje: "Nate Archibald",          pista: "Príncipe azul del Upper East Side. Bueno de corazón en un mundo que premia otra cosa." },
+  { personaje: "Nate Archibald",          pista: "Le caía bien a todo el mundo, lo cual era exactamente lo que complicaba su vida." },
+  { personaje: "Georgina Sparks",         pista: "Aparece cuando menos la esperas y siempre con algo que puede destruirte." },
+  { personaje: "Georgina Sparks",         pista: "El caos personificado. Inteligente, impredecible y completamente imposible de ignorar." },
+  { personaje: "Jenny Humphrey",          pista: "La hermana menor de Brooklyn dispuesta a todo por ascender socialmente." },
+  { personaje: "Jenny Humphrey",          pista: "Empezó como outsider y casi termina como la nueva reina de Constance Billard." },
+  { personaje: "Vanessa Abrams",          pista: "La chica de Brooklyn con cámara en mano y principios firmes — al menos al principio." },
+  { personaje: "Vanessa Abrams",          pista: "Mejor amiga de Dan desde la infancia y su conexión con un mundo ajeno al Upper East Side." },
+  { personaje: "Lily van der Woodsen",    pista: "Matriarca del Upper East Side con un pasado tan complicado como su árbol genealógico." },
+  { personaje: "Lily van der Woodsen",    pista: "Se casó varias veces. No siempre bien. Siempre con estilo." },
+  { personaje: "Rufus Humphrey",          pista: "Músico de los 90s que nunca terminó de encajar en el mundo al que su familia pertenecía." },
+  { personaje: "Rufus Humphrey",          pista: "Padre de Dan y Jenny. Su historia con Lily van der Woodsen empezó mucho antes de la serie." },
+  { personaje: "Eleanor Waldorf",         pista: "Diseñadora de moda y madre de Blair. Exigente, elegante y con expectativas que nunca bajaban." },
+  { personaje: "Cyrus Rose",              pista: "Padrastro de Blair. Entusiasta, cálido y completamente fuera de lugar en el Upper East Side — lo cual lo hacía perfecto." },
+  { personaje: "Harold Waldorf",          pista: "Padre de Blair que se fue a vivir a París con su pareja. Siempre fue más comprensivo que Eleanor." },
+  { personaje: "Eric van der Woodsen",    pista: "Hermano menor de Serena. Tranquilo, observador y uno de los personajes más genuinos de la serie." },
+  { personaje: "William van der Woodsen", pista: "Padre ausente de Serena que reapareció con una agenda propia y promesas difíciles de creer." },
+  { personaje: "Anne Archibald",          pista: "Madre de Nate. Parte de la élite del Upper East Side y conocedora de más secretos de los que aparentaba." },
+  { personaje: "Howard Archibald",        pista: "El Capitán. Padre de Nate con problemas financieros que pusieron a toda la familia en jaque." },
+  { personaje: "Bart Bass",               pista: "Magnate implacable y padre de Chuck. Su muerte — y lo que vino después — marcó el rumbo de toda la familia." },
+  { personaje: "Jack Bass",               pista: "El tío problemático de Chuck. Llegaba, causaba caos y desaparecía. Hasta que no." },
+  { personaje: "Dorota Kishlovsky",       pista: "Ama de llaves de Blair, testigo de todos sus secretos y, en muchos sentidos, su aliada más leal." },
+];
+
+let q2Pregunta = 0;
+let q2Aciertos = 0;
+let q2Historial = [];
+let q2PreguntasActivas = [];
+
+function mezclar(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function generarPreguntasQ2() {
+  const pool = mezclar(TODOS_PERSONAJES).slice(0, 10);
+  return pool.map(personajeCorrecto => {
+    const pistasDisponibles = BANCO_PISTAS.filter(p => p.personaje === personajeCorrecto.nombre);
+    const pistaElegida = pistasDisponibles[Math.floor(Math.random() * pistasDisponibles.length)];
+    const distractores = mezclar(TODOS_PERSONAJES.filter(p => p.nombre !== personajeCorrecto.nombre)).slice(0, 3);
+    const opciones = mezclar([personajeCorrecto, ...distractores]);
+    return {
+      pista: pistaElegida ? pistaElegida.pista : `Personaje: ${personajeCorrecto.nombre}`,
+      correcto: personajeCorrecto,
+      opciones
+    };
+  });
+}
+
+function comenzarQuiz2() {
+  q2Pregunta = 0;
+  q2Aciertos = 0;
+  q2Historial = [];
+  q2PreguntasActivas = generarPreguntasQ2();
+  document.getElementById('quizzes-inicio').style.display = 'none';
+  document.getElementById('quiz-app').style.display = 'none';
+  document.getElementById('quiz2-app').style.display = 'block';
+  renderQ2Pregunta(0);
+}
+
+function renderQ2Pregunta(idx) {
+  const app = document.getElementById('quiz2-app');
+  const p = q2PreguntasActivas[idx];
+  const porcentaje = Math.round((idx / 10) * 100);
+  app.innerHTML = `
+    <div class="q2-barra-wrap">
+      <span class="q2-progreso-label">Pregunta ${idx + 1}</span>
+      <div class="q2-barra-track">
+        <div class="q2-barra-fill" id="q2-fill" style="width:${porcentaje}%"></div>
+      </div>
+      <span class="q2-progreso-num">${idx + 1} / 10</span>
+    </div>
+    <div class="quiz-salir-bar">
+      <button class="quiz-salir-btn" onclick="salirQuiz(${idx}, reiniciarQuiz)">← Salir del quiz</button>
+    </div>
+    <div class="q2-pantalla">
+      <p class="q2-pista-label">¿De quién se trata?</p>
+      <p class="q2-pista-texto">${p.pista}</p>
+      <div class="q2-opciones">
+        ${p.opciones.map((op, i) => `
+          <button class="q2-opcion" onclick="responderQ2(${i})" id="q2-op-${i}">
+            <div class="q2-opcion-foto">
+              <img src="${op.foto}" alt="${op.nombre}" loading="lazy">
+            </div>
+            <span class="q2-opcion-nombre">${op.nombre}</span>
+          </button>
+        `).join('')}
+      </div>
+    </div>
+  `;
+  setTimeout(() => {
+    const fill = document.getElementById('q2-fill');
+    if (fill) fill.style.width = porcentaje + '%';
+  }, 50);
+}
+
+function responderQ2(opcionIdx) {
+  const p = q2PreguntasActivas[q2Pregunta];
+  const elegido = p.opciones[opcionIdx];
+  const correcto = elegido.nombre === p.correcto.nombre;
+  if (correcto) q2Aciertos++;
+  p.opciones.forEach((op, i) => {
+    const btn = document.getElementById(`q2-op-${i}`);
+    btn.disabled = true;
+    if (op.nombre === p.correcto.nombre) {
+      btn.classList.add(i === opcionIdx ? 'correcta' : 'revelar-correcta');
+    } else if (i === opcionIdx) {
+      btn.classList.add('incorrecta');
+    }
+  });
+  q2Historial.push({
+    personaje: p.correcto.nombre,
+    foto: p.correcto.foto,
+    pista: p.pista,
+    correcto
+  });
+  setTimeout(() => {
+    q2Pregunta++;
+    if (q2Pregunta < 10) {
+      renderQ2Pregunta(q2Pregunta);
+    } else {
+      renderQ2Resultado();
+    }
+  }, 900);
+}
+
+function renderQ2Resultado() {
+  const app = document.getElementById('quiz2-app');
+  const n = q2Aciertos;
+  const calificaciones = [
+    { min: 0,  max: 3,  titulo: "¿Seguro que viste la serie?",        sub: "Quizás deberías darle otra oportunidad al Upper East Side." },
+    { min: 4,  max: 6,  titulo: "Conoces el Upper East Side… de lejos.", sub: "Sabes lo básico, pero los secretos más oscuros aún te escapan." },
+    { min: 7,  max: 8,  titulo: "Fan de verdad.",                       sub: "Gossip Girl te tiene en su lista de contactos de confianza." },
+    { min: 9,  max: 9,  titulo: "Casi perfecto.",                       sub: "Solo uno te escapó. Gossip Girl lo habría sabido." },
+    { min: 10, max: 10, titulo: "Eres Gossip Girl.",                    sub: "XOXO. No había duda desde el principio." },
+  ];
+  const cal = calificaciones.find(c => n >= c.min && n <= c.max);
+  app.innerHTML = `
+    <div class="q2-resultado">
+      <div class="q2-resultado-header">
+        <div class="q2-puntaje-num">${n}<span style="font-size:36px;color:#666;">/10</span></div>
+        <div class="q2-puntaje-de">personajes identificados</div>
+        <div class="q2-resultado-titulo">${cal.titulo}</div>
+        <div class="q2-resultado-sub">${cal.sub}</div>
+      </div>
+      <div class="q2-resultado-cuerpo">
+        <div class="q2-repaso-titulo"><span>Repaso de respuestas</span></div>
+        <div class="q2-repaso-lista">
+          ${q2Historial.map(item => `
+            <div class="q2-repaso-item">
+              <div class="q2-repaso-foto">
+                <img src="${item.foto}" alt="${item.personaje}" loading="lazy">
+              </div>
+              <div class="q2-repaso-info">
+                <span class="q2-repaso-nombre">${item.personaje}</span>
+                <span class="q2-repaso-pista">${item.pista}</span>
+              </div>
+              <span class="q2-repaso-estado">${item.correcto ? '✓' : '✗'}</span>
+            </div>
+          `).join('')}
+        </div>
+        <div class="q2-acciones" style="justify-content:center;">
+          <button class="btn-secundario" onclick="volverInicio()">← Volver al inicio</button>
+          <button class="btn-primario" onclick="comenzarQuiz2()">↬ Jugar de nuevo ↫</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function volverInicio() {
+  document.getElementById('quiz2-app').style.display = 'none';
+  document.getElementById('quiz-app').style.display = 'none';
+  document.getElementById('quizzes-inicio').style.display = 'block';
+  iniciarCarruseles();
+}
+
+function iniciarCarruseles() {
+  const slides1 = document.querySelectorAll('#carousel-frame .carousel-slide');
+  if (slides1.length) {
+    let idx1 = 0;
+    slides1[0].classList.add('activa');
+    setInterval(() => {
+      slides1[idx1].classList.remove('activa');
+      idx1 = (idx1 + 1) % slides1.length;
+      slides1[idx1].classList.add('activa');
+    }, 2500);
+  }
+  const slides2 = document.querySelectorAll('#carousel2-frame .carousel-slide');
+  if (slides2.length) {
+    let idx2 = 0;
+    slides2[0].classList.add('activa');
+    setInterval(() => {
+      slides2[idx2].classList.remove('activa');
+      idx2 = (idx2 + 1) % slides2.length;
+      slides2[idx2].classList.add('activa');
+    }, 2000);
+  }
+}
+
+window.addEventListener('load', iniciarCarruseles);
+</script>
+<script>
+  const preguntas = [
+    {
+      texto: "Es sábado por la mañana. ¿Qué estás haciendo?",
+      opciones: [
+        { texto: "Planeando mi próximo plan maestro con un café y mi agenda.", pesos: { blair: 3, chuck: 1, serena: 0, dan: 0, nate: 1, georgina: 0 } },
+        { texto: "Despertando sin planes fijos, dispuest@ a ver qué trae el día.", pesos: { blair: 0, chuck: 0, serena: 3, dan: 0, nate: 2, georgina: 1 } },
+        { texto: "Escribiendo en mi cuarto, con mi música favorita y una taza de té.", pesos: { blair: 0, chuck: 0, serena: 0, dan: 3, nate: 0, georgina: 0 } },
+        { texto: "Tramando algo que nadie esperaría de mí.", pesos: { blair: 1, chuck: 2, serena: 0, dan: 0, nate: 0, georgina: 3 } }
+      ]
+    },
+    {
+      texto: "Alguien te traiciona en público. ¿Tu reacción?",
+      opciones: [
+        { texto: "Vengarme. Ya tengo el plan de venganza listo antes de que terminen la frase.", pesos: { blair: 3, chuck: 2, serena: 0, dan: 0, nate: 0, georgina: 2 } },
+        { texto: "Me siento herid@, pero prefiero resolver las cosas hablando.", pesos: { blair: 0, chuck: 0, serena: 2, dan: 2, nate: 3, georgina: 0 } },
+        { texto: "Lo escribo todo en un diario. Quizás algún día lo convierta en novela.", pesos: { blair: 0, chuck: 0, serena: 0, dan: 3, nate: 0, georgina: 0 } },
+        { texto: "Me voy. El drama no me interesa… por ahora.", pesos: { blair: 0, chuck: 3, serena: 1, dan: 0, nate: 1, georgina: 1 } }
+      ]
+    },
+    {
+      texto: "¿Cuál sería tu ambiente ideal?",
+      opciones: [
+        { texto: "Un evento social de alta clase donde pueda ser admirad@.", pesos: { blair: 3, chuck: 1, serena: 1, dan: 0, nate: 0, georgina: 1 } },
+        { texto: "Un penthouse con vistas a Manhattan y acceso ilimitado a todo.", pesos: { blair: 1, chuck: 3, serena: 1, dan: 0, nate: 0, georgina: 0 } },
+        { texto: "Un departamento en Brooklyn con librería propia y buenas conversaciones.", pesos: { blair: 0, chuck: 0, serena: 0, dan: 3, nate: 1, georgina: 0 } },
+        { texto: "Donde sea que haya acción, fiesta y gente interesante.", pesos: { blair: 0, chuck: 0, serena: 3, dan: 0, nate: 2, georgina: 2 } }
+      ]
+    },
+    {
+      texto: "Tu arma más poderosa es:",
+      opciones: [
+        { texto: "La inteligencia. Siempre voy tres pasos adelante.", pesos: { blair: 3, chuck: 2, serena: 0, dan: 1, nate: 0, georgina: 2 } },
+        { texto: "El encanto. La gente confía en mí sin saber por qué.", pesos: { blair: 0, chuck: 1, serena: 3, dan: 0, nate: 2, georgina: 1 } },
+        { texto: "La pluma/el teclado. Las palabras hacen más daño que cualquier otra cosa.", pesos: { blair: 0, chuck: 0, serena: 0, dan: 3, nate: 0, georgina: 1 } },
+        { texto: "La información. Sé secretos que nadie sabe que tengo.", pesos: { blair: 1, chuck: 2, serena: 0, dan: 0, nate: 0, georgina: 3 } }
+      ]
+    },
+    {
+      texto: "¿Cómo describes tu relación con el amor?",
+      opciones: [
+        { texto: "Apasionada e intensa. Amo con todo o no amo nada.", pesos: { blair: 3, chuck: 2, serena: 1, dan: 0, nate: 0, georgina: 0 } },
+        { texto: "Complicada. Siempre hay capas que la gente no ve.", pesos: { blair: 1, chuck: 3, serena: 1, dan: 1, nate: 0, georgina: 1 } },
+        { texto: "Romántica e idealista. Creo en el gran amor.", pesos: { blair: 0, chuck: 0, serena: 2, dan: 3, nate: 2, georgina: 0 } },
+        { texto: "Lo uso cuando me conviene. El amor es poder.", pesos: { blair: 1, chuck: 1, serena: 0, dan: 0, nate: 0, georgina: 3 } }
+      ]
+    },
+    {
+      texto: "Una gala benéfica en el MET. ¿Qué haces?",
+      opciones: [
+        { texto: "Llego impecable, saludo a quien debo y me aseguro de que me recuerden.", pesos: { blair: 3, chuck: 2, serena: 1, dan: 0, nate: 0, georgina: 0 } },
+        { texto: "Aparezco tarde, sin invitación y robo el show igual.", pesos: { blair: 0, chuck: 1, serena: 2, dan: 0, nate: 0, georgina: 3 } },
+        { texto: "Voy porque me arrastraron. Preferiría estar en casa leyendo.", pesos: { blair: 0, chuck: 0, serena: 0, dan: 3, nate: 1, georgina: 0 } },
+        { texto: "Disfruto, hablo con todos y termino en la pista de baile.", pesos: { blair: 0, chuck: 0, serena: 3, dan: 0, nate: 3, georgina: 1 } }
+      ]
+    },
+    {
+      texto: "Tu outfit del día refleja:",
+      opciones: [
+        { texto: "Status, poder y que no hay nadie mejor vestid@ en la sala.", pesos: { blair: 3, chuck: 1, serena: 0, dan: 0, nate: 0, georgina: 0 } },
+        { texto: "Que soy auténtica y no me importa lo que piensen.", pesos: { blair: 0, chuck: 0, serena: 3, dan: 2, nate: 1, georgina: 1 } },
+        { texto: "Algo oscuro, sofisticado y ligeramente intimidante.", pesos: { blair: 0, chuck: 3, serena: 0, dan: 0, nate: 0, georgina: 2 } },
+        { texto: "Que vengo a causar problemas y lo sé desde que me desperté.", pesos: { blair: 1, chuck: 1, serena: 0, dan: 0, nate: 0, georgina: 3 } }
+      ]
+    },
+    {
+      texto: "¿Qué harías si supieras un secreto devastador sobre alguien?",
+      opciones: [
+        { texto: "Lo guardo hasta el momento más estratégico para usarlo.", pesos: { blair: 3, chuck: 2, serena: 0, dan: 0, nate: 0, georgina: 2 } },
+        { texto: "Lo escribo de forma anónima. La verdad merece salir a la luz.", pesos: { blair: 0, chuck: 0, serena: 0, dan: 3, nate: 0, georgina: 1 } },
+        { texto: "Me angustio cargando ese peso. Probablemente lo confieso.", pesos: { blair: 0, chuck: 0, serena: 2, dan: 1, nate: 3, georgina: 0 } },
+        { texto: "Lo suelto en el momento más dramático posible y disfruto el caos.", pesos: { blair: 1, chuck: 1, serena: 1, dan: 0, nate: 0, georgina: 3 } }
+      ]
+    },
+    {
+      texto: "¿Cuál es tu mayor miedo?",
+      opciones: [
+        { texto: "No ser suficiente. Que el mundo descubra mis inseguridades.", pesos: { blair: 3, chuck: 1, serena: 1, dan: 1, nate: 0, georgina: 0 } },
+        { texto: "Que nadie me necesite realmente. La soledad disfrazada de libertad.", pesos: { blair: 0, chuck: 3, serena: 0, dan: 0, nate: 0, georgina: 0 } },
+        { texto: "Perder a las personas que quiero por mis propios errores.", pesos: { blair: 0, chuck: 0, serena: 3, dan: 1, nate: 2, georgina: 0 } },
+        { texto: "El aburrimiento. No saber qué sigue.", pesos: { blair: 0, chuck: 1, serena: 1, dan: 0, nate: 1, georgina: 3 } }
+      ]
+    },
+    {
+      texto: "Al final del día, ¿qué te importa más?",
+      opciones: [
+        { texto: "Ganar. Siempre.", pesos: { blair: 3, chuck: 2, serena: 0, dan: 0, nate: 0, georgina: 2 } },
+        { texto: "Las personas que amo, aunque sea complicado quererlas.", pesos: { blair: 1, chuck: 2, serena: 2, dan: 1, nate: 3, georgina: 0 } },
+        { texto: "Ser honest@ conmigo mismo y con el mundo.", pesos: { blair: 0, chuck: 0, serena: 1, dan: 3, nate: 1, georgina: 0 } },
+        { texto: "Que nadie sepa bien qué estoy pensando o tramando.", pesos: { blair: 0, chuck: 2, serena: 0, dan: 0, nate: 0, georgina: 3 } }
+      ]
+    }
+  ];
+
+  const resultados = {
+    blair: {
+      nombre: "Blair Waldorf",
+      subtitulo: "Reina del Upper East Side",
+      foto: "personajes/personajes/b.jpeg",
+      quote: "You can't make people love you, but you can make them fear you.",
+      descripcion: "Calculadora, perfeccionista y profundamente ambiciosa. Bajo tu fachada impecable vive alguien que ama con una intensidad que pocos comprenden. Eres leal con quienes se ganan tu confianza y feroz con quienes la traicionan. Tienes un plan para todo — incluyendo los planes que aún no necesitas.",
+      rasgos: ["Estratégica", "Ambiciosa", "Leal", "Perfeccionista", "Implacable"],
+      pagina: "blair.html"
+    },
+    chuck: {
+      nombre: "Chuck Bass",
+      subtitulo: "El más enigmático del Upper East Side",
+      foto: "personajes/personajes/c.jpeg",
+      quote: "I'm Chuck Bass. And I told you I love you. You're saying I'm easier to understand than that?",
+      descripcion: "Sofisticado, oscuro y con más capas de las que nadie se molesta en descubrir. Usas el poder con elegancia y el misterio como escudo. Quienes te conocen de verdad saben que detrás de todo hay alguien que siente profundamente — aunque jamás lo admitirías en público.",
+      rasgos: ["Enigmático", "Poderoso", "Intenso", "Sofisticado", "Complejo"],
+      pagina: "chuck.html"
+    },
+    serena: {
+      nombre: "Serena van der Woodsen",
+      subtitulo: "La it girl que no lo busca",
+      foto: "personajes/personajes/s.jpeg",
+      quote: "I'm not trying to be the center of attention. It just happens.",
+      descripcion: "Magnética y genuina, tu presencia transforma cualquier habitación sin que lo intentes. Eres cálida, impulsiva y a veces tu propio peor enemigo — pero esa autenticidad es exactamente lo que hace que todos quieran estar cerca de ti. El caos te sigue, pero también la aventura.",
+      rasgos: ["Magnética", "Auténtica", "Impulsiva", "Generosa", "Libre"],
+      pagina: "serena.html"
+    },
+    dan: {
+      nombre: "Dan Humphrey",
+      subtitulo: "El observador de Brooklyn",
+      foto: "personajes/personajes/d.jpeg",
+      quote: "I'm an outsider. I see things you can't when you're in the middle of it.",
+      descripcion: "Observador, honesto y con una pluma más afilada de lo que aparenta. Eres el que ve todo desde afuera y lo procesa por escrito. A veces el más inteligente de la sala — y el que menos crédito recibe. Tu idealismo puede ser tu fuerza o tu talón de Aquiles, dependiendo del día.",
+      rasgos: ["Observador", "Honesto", "Escritor", "Idealista", "Analítico"],
+      pagina: "dan.html"
+    },
+    nate: {
+      nombre: "Nate Archibald",
+      subtitulo: "El príncipe azul del Upper East Side",
+      foto: "personajes/personajes/n.jpeg",
+      quote: "Sometimes the right thing and the easy thing are the same. Just not always when you want them to be.",
+      descripcion: "Bueno de corazón en un mundo que premia otra cosa. Eres leal, empático y a veces demasiado confiado con la gente equivocada. Tienes el don de caerle bien a todo el mundo — lo cual puede ser una bendición o exactamente lo que te complica la vida.",
+      rasgos: ["Leal", "Empático", "Sincero", "Confiado", "Carismático"],
+      pagina: "nate.html"
+    },
+    georgina: {
+      nombre: "Georgina Sparks",
+      subtitulo: "El caos en persona",
+      foto: "personajes/personajes/g.jpeg",
+      quote: "I'm not a villain. I'm just better at it than everyone else.",
+      descripcion: "Impredecible, audaz y completamente imposible de ignorar. Donde hay aburrimiento, tú traes fuego. Tienes una inteligencia que asustaría a la mayoría — y la usas para desestabilizar todo lo que se cruza en tu camino. Que la gente no sepa qué esperar de ti es exactamente como lo planeas.",
+      rasgos: ["Impredecible", "Audaz", "Inteligente", "Disruptiva", "Magnética"],
+      pagina: "georgina.html"
+    }
+  };
+
+  let preguntaActual = 0;
+  let puntos = { blair: 0, chuck: 0, serena: 0, dan: 0, nate: 0, georgina: 0 };
+  const app = document.getElementById('quiz-app');
+
+  function renderPregunta(idx) {
+    const p = preguntas[idx];
+    const porcentaje = Math.round((idx / preguntas.length) * 100);
+    app.innerHTML = `
+      <div class="barra-progreso-wrap">
+        <span class="progreso-label">Pregunta ${idx + 1}</span>
+        <div class="barra-track">
+          <div class="barra-fill" style="width: ${porcentaje}%"></div>
+        </div>
+        <span class="progreso-num">${idx + 1} / ${preguntas.length}</span>
+      </div>
+      <div class="quiz-salir-bar">
+        <button class="quiz-salir-btn" onclick="salirQuiz(${idx}, reiniciarQuiz)">← Salir del quiz</button>
+      </div>
+      <div class="pantalla-pregunta">
+        <div class="etiqueta-pregunta"><span>Quiz - ¿Quién eres del Upper East Side?</span></div>
+        <p class="texto-pregunta">${p.texto}</p>
+        <div class="opciones-grid">
+          ${p.opciones.map((op, i) => `
+            <button class="opcion-btn" onclick="elegirOpcion(${i})">
+              ${op.texto}
+            </button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+    setTimeout(() => {
+      const fill = app.querySelector('.barra-fill');
+      if (fill) fill.style.width = porcentaje + '%';
+    }, 50);
+  }
+
+  function elegirOpcion(opcionIdx) {
+    const btns = app.querySelectorAll('.opcion-btn');
+    btns.forEach(b => b.disabled = true);
+    btns[opcionIdx].classList.add('seleccionada');
+    const pesos = preguntas[preguntaActual].opciones[opcionIdx].pesos;
+    for (const [key, val] of Object.entries(pesos)) {
+      puntos[key] += val;
+    }
+    setTimeout(() => {
+      preguntaActual++;
+      if (preguntaActual < preguntas.length) {
+        renderPregunta(preguntaActual);
+      } else {
+        renderResultado();
+      }
+    }, 380);
+  }
+
+  function renderResultado() {
+    const ganador = Object.entries(puntos).reduce((a, b) => b[1] > a[1] ? b : a)[0];
+    const r = resultados[ganador];
+    app.innerHTML = `
+      <div class="pantalla-resultado">
+        <div class="resultado-header">
+          <div class="resultado-foto-wrap">
+            <div class="resultado-foto">
+              <img src="${r.foto}" alt="${r.nombre}">
+            </div>
+            <div class="resultado-badge">Tu resultado</div>
+          </div>
+          <div class="resultado-texto">
+            <h2>Eres</h2>
+            <div class="resultado-nombre">${r.nombre}</div>
+            <div class="resultado-subtitulo">${r.subtitulo}</div>
+            <p class="resultado-quote">"${r.quote}"</p>
+          </div>
+        </div>
+        <div class="resultado-cuerpo">
+          <div class="etiqueta-seccion"><span>Tu perfil</span></div>
+          <p class="resultado-desc">${r.descripcion}</p>
+          <div class="rasgos-grid">
+            ${r.rasgos.map(rasgo => `<span class="rasgo-tag">${rasgo}</span>`).join('')}
+          </div>
+          <div class="resultado-acciones">
+            <a href="${r.pagina}" class="btn-primario">Ver perfil completo</a>
+            <button class="btn-secundario" onclick="reiniciarQuiz()">Volver a jugar</button>
+            <a href="personajes.html" class="btn-secundario">Ver todos los personajes</a>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function comenzarQuiz() {
+    preguntaActual = 0;
+    puntos = { blair: 0, chuck: 0, serena: 0, dan: 0, nate: 0, georgina: 0 };
+    document.getElementById('quizzes-inicio').style.display = 'none';
+    document.getElementById('quiz2-app').style.display = 'none';
+    document.getElementById('quiz-app').style.display = 'block';
+    renderPregunta(0);
+  }
+
+  function reiniciarQuiz() {
+    preguntaActual = 0;
+    puntos = { blair: 0, chuck: 0, serena: 0, dan: 0, nate: 0, georgina: 0 };
+    document.getElementById('quiz-app').style.display = 'none';
+    document.getElementById('quiz2-app').style.display = 'none';
+    document.getElementById('quizzes-inicio').style.display = 'block';
+    iniciarCarruseles();
+  }
+</script>
+<script>
+  function cerrarConfirm() {
+    const overlay = document.getElementById('quiz-confirm-overlay');
+    if (overlay) overlay.remove();
+  }
+
+  function confirmarSalir() {
+    cerrarConfirm();
+    if (window._confirmarSalirCallback) {
+      window._confirmarSalirCallback();
+      window._confirmarSalirCallback = null;
+    }
+  }
+
+  function salirQuiz(preguntaActualNum, callback) {
+    if (preguntaActualNum === 0) {
+      callback();
+      return;
+    }
+    const overlay = document.createElement('div');
+    overlay.className = 'quiz-confirm-overlay';
+    overlay.id = 'quiz-confirm-overlay';
+    overlay.innerHTML = `
+      <div class="quiz-confirm-box">
+        <p class="quiz-confirm-titulo">¿Realmente quieres salir?</p>
+        <p class="quiz-confirm-sub">Perderás tu progreso.</p>
+        <div class="quiz-confirm-botones">
+          <button class="btn-secundario" onclick="cerrarConfirm()">No, seguir</button>
+          <button class="btn-primario" onclick="confirmarSalir()">Sí, salir</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+    window._confirmarSalirCallback = callback;
+  }
+
+  const revelarAlScrollear = () => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.inicio-desc, .ahora, .btn-primario, .footer-grid').forEach(el => {
+      el.classList.add('reveal');
+      observer.observe(el);
+    });
+  };
+  window.addEventListener('load', revelarAlScrollear);
+</script>
+<script>
+  const GG_MENSAJES = [
+    "Spotted: alguien que conoce sus secretos del Upper East Side. Bienvenido al círculo. XOXO, Gossip Girl.",
+    "¿Pensabas que nadie te veía? Siempre estoy mirando, querido. XOXO, Gossip Girl.",
+    "Un fan verdadero. De esos ya no quedan muchos en este lado de Manhattan. XOXO, Gossip Girl.",
+    "Dijeron que los secretos no duran para siempre. Tenían razón. XOXO, Gossip Girl.",
+    "El Upper East Side tiene memoria larga. Y yo, más. XOXO, Gossip Girl."
+  ];
+
+  let secuencia = '';
+  let typingTimer = null;
+
+  function cerrarBlast() {
+    const blast = document.getElementById('gg-blast');
+    blast.classList.remove('visible');
+    secuencia = '';
+  }
+
+  function escribirTexto(texto) {
+    const contenedor = document.getElementById('gg-blast-texto');
+    let i = 0;
+    clearInterval(typingTimer);
+    typingTimer = setInterval(() => {
+      const cursor = document.getElementById('gg-blast-cursor');
+      if (!cursor) { clearInterval(typingTimer); return; }
+      if (i < texto.length) {
+        contenedor.insertBefore(document.createTextNode(texto[i]), cursor);
+        i++;
+      } else {
+        clearInterval(typingTimer);
+      }
+    }, 32);
+  }
+
+  function activarBlast() {
+    const mensaje = GG_MENSAJES[Math.floor(Math.random() * GG_MENSAJES.length)];
+    const blast = document.getElementById('gg-blast');
+    const contenedor = document.getElementById('gg-blast-texto');
+    contenedor.innerHTML = '<span id="gg-blast-cursor"></span>';
+    blast.classList.add('visible');
+    setTimeout(() => escribirTexto(mensaje), 500);
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+    secuencia += e.key.toUpperCase();
+    if (secuencia.length > 4) secuencia = secuencia.slice(-4);
+    if (secuencia === 'XOXO') {
+      secuencia = '';
+      activarBlast();
+    }
+  });
+</script>
+<script>
+  function abrirTip() {
+    document.getElementById('tip-formulario').style.display = 'block';
+    document.getElementById('tip-confirmacion').style.display = 'none';
+    document.getElementById('tip-textarea').value = '';
+    document.getElementById('tip-panel').classList.add('visible');
+  }
+
+  function cerrarTip() {
+    document.getElementById('tip-panel').classList.remove('visible');
+  }
+
+  function enviarTip() {
+    const texto = document.getElementById('tip-textarea').value.trim();
+    if (!texto) {
+      document.getElementById('tip-textarea').focus();
+      return;
+    }
+    document.getElementById('tip-formulario').style.display = 'none';
+    document.getElementById('tip-confirmacion').style.display = 'block';
+  }
+</script>
+</body>
+</html>
